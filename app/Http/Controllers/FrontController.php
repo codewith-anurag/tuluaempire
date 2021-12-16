@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use App\Models\ContactSetting;
 
 
 
@@ -82,7 +83,8 @@ class FrontController extends Controller
     }
     public function contact()
     {
-        return view('front.contact_us');
+        $data['contact_detail'] = ContactSetting::all();
+        return view('front.contact_us',$data);
     }
     public function ourservices()
     {

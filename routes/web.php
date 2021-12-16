@@ -8,6 +8,9 @@ use App\Models\Package;
 use App\Models\PremiumActivity;
 use App\Models\Theme;
 use App\Models\SubTheme;
+use App\Models\ContactSetting;
+
+
 
 
 /*
@@ -30,6 +33,10 @@ View::composer(['front.layouts.header'], function ($data) {
     $data['packages']    = Package::where('status',1)->get();
     $data['premium_activity']    = PremiumActivity::where('status',1)->get();
     $data['theme']    = Theme::where('status',1)->get();
+});
+View::composer(['front.layouts.footer'], function ($data) {
+    $data['contact_detail'] = ContactSetting::all();
+
 });
 
 Route::get('frontourservices',[App\Http\Controllers\FrontController::class, 'ourservices'])->name('frontourservices');

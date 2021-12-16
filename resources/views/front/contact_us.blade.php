@@ -104,26 +104,31 @@
                             <p>If you have any further questions, please don’t hesitate to contact me.</p>
                         </div>
                         <br>
-                        <h5>UAE Branch</h5>
+                        @foreach ($contact_detail as $contact_detail_list)
+                        @if($contact_detail_list->barnch_name!="")
+                            <h5>{{$contact_detail_list->barnch_name}}</h5>
+                        @endif
                         <ul>
+                            @if($contact_detail_list->address!="")
                             <li>
                                 <div class="singel-address">
                                     <div class="icon">
                                         <i class="fa fa-home"></i>
                                     </div>
                                     <div class="cont">
-                                        <p> B 2611, AI Buhaira Tower, AI Nahda, Sharjah - UAE </p>
+                                        <p> {{$contact_detail_list->address}} </p>
                                     </div>
                                 </div> <!-- singel address -->
                             </li>
+                            @endif
                             <li>
                                 <div class="singel-address">
                                     <div class="icon">
                                         <i class="fa fa-phone"></i>
                                     </div>
                                     <div class="cont">
-                                        <p> +971 6573 7770 </p>
-                                        <p> +971 56 717 3839 </p>
+                                        <p> +{{$contact_detail_list->phone1}} </p>
+                                        <p> +{{$contact_detail_list->phone2}}  </p>
                                     </div>
                                 </div> <!-- singel address -->
                             </li>
@@ -133,57 +138,15 @@
                                         <i class="fa fa-envelope-o"></i>
                                     </div>
                                     <div class="cont">
-                                        <p> info@tuluaempire.com </p>
+                                        <p> {{$contact_detail_list->email}}  </p>
                                         <!-- <p>info@yourmail.com</p> -->
                                     </div>
                                 </div> <!-- singel address -->
                             </li>
                             <br>
-                            <h5>India Branch</h5>
-                            <li>
-                                <div class="singel-address">
-                                    <div class="icon">
-                                        <i class="fa fa-home"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p> 203, Siddhi Darshan, Opp. Banshi Vihar Flat, Anand Vidyanagar Road, Anand GJ 388001 India </p>
-                                    </div>
-                                </div> <!-- singel address -->
-                            </li>
-                            <li>
-                                <div class="singel-address">
-                                    <div class="icon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p> +91-96015 69549 </p>
-                                        <p> +971 56 717 3839 </p>
-                                    </div>
-                                </div> <!-- singel address -->
-                            </li>
-                            <li>
-                                <div class="singel-address">
-                                    <div class="icon">
-                                        <i class="fa fa-envelope-o"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p> info@tuluaempire.com </p>
-                                        <!-- <p>info@yourmail.com</p> -->
-                                    </div>
-                                </div> <!-- singel address -->
-                            </li>
-                            <!-- <li>
-                                <div class="singel-address">
-                                    <div class="icon">
-                                        <i class="fa fa-globe"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p>www.yoursite.com</p>
-                                        <p>www.example.com</p>
-                                    </div>
-                                </div>
-                            </li> -->
+
                         </ul>
+                        @endforeach
                     </div> <!-- contact address -->
 
                 </div>
@@ -212,7 +175,7 @@
 
 
 <div class="hidden-xs wave__footer">
-            <div class="wave__ft1"></div>
+   <div class="wave__ft1"></div>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>

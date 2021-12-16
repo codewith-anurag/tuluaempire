@@ -28,7 +28,7 @@
 </div>
 </section>
 
-    <div style="text-align: center"> <h2>   {{$title}}   </h2></div>
+    {{-- <div style="text-align: center"> <h2>   {{$title}}   </h2></div> --}}
 
 
 

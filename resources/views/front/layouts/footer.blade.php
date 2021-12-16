@@ -79,76 +79,62 @@
                         </div> <!-- footer link -->
                     </div>
                     <div class="col-lg-3 col-md-6">
+                         @foreach ($contact_detail as $contact_detail_list)
 
+                         @if($contact_detail_list->barnch_name!="")
                            <div class="footer-title pt-5 pb-25">
-                                <h6>UAE Branch</h6>
+                                <h6>{{$contact_detail_list->barnch_name}}</h6>
                             </div>
+                            @endif
                             <div class="footer-address">
                          <!--    <div class="footer-title pb-25">
                                 <h6>Contact Us</h6>
                             </div> -->
                             <ul>
+                                @if($contact_detail_list->address!="")
                                 <li>
                                     <div class="icon">
                                         <i class="fa fa-home"></i>
                                     </div>
                                     <div class="cont">
-                                        <p> B 2611, AI Buhaira Tower, AI Nahda, Sharjah - UAE</p>
+                                        <p> {{$contact_detail_list->address}}</p>
                                     </div>
                                 </li>
+                                @endif
+                                @if($contact_detail_list->phone1!="")
                                 <li>
                                     <div class="icon">
                                         <i class="fa fa-phone" ></i>
                                     </div>
                                     <div class="cont">
-                                        <p>+971 6573 7770</p>
+                                        <p> + {{$contact_detail_list->phone1}}</p>
                                     </div>
                                 </li>
+                                @endif
+                                @if($contact_detail_list->phone2!="")
                                 <li>
                                     <div class="icon">
                                     <i class="fa fa-mobile" aria-hidden="true" style="font-size: 25px;"></i>
                                     </div>
                                     <div class="cont">
-                                        <p>+971 56 717 3839</p>
+                                        <p>+{{$contact_detail_list->phone2}}</p>
                                     </div>
                                 </li>
+                                @endif
+                                @if($contact_detail_list->email!="")
                                 <li>
                                     <div class="icon">
                                         <i class="fa fa-envelope-o"></i>
                                     </div>
                                     <div class="cont">
-                                        <p>info@tuluaempire.com</p>
+                                        <p>{{$contact_detail_list->email}}</p>
                                     </div>
                                 </li>
-                                <div class="footer-title pt-20 pb-20">
-                                <h6>India Branch</h6>
-                            </div>
-                                <li>
-                                    <div class="icon">
-                                        <i class="fa fa-home"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p> 203, Siddhi Darshan, Opp. Banshi Vihar Flat, Anand Vidyanagar Road, Anand GJ 388001 India </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position: absolute;">
-                                    <i class="fa fa-whatsapp" style="font-size:25px"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p> +91-96015 69549 </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <i class="fa fa-envelope-o"></i>
-                                    </div>
-                                    <div class="cont">
-                                        <p>info@tuluaempire.com</p>
-                                    </div>
-                                </li>
+                                @endif
+
                             </ul>
                         </div>
+                        @endforeach
                             <!-- <div class="footer-about">
                                    <ul>
                                 <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
@@ -158,6 +144,7 @@
                             </ul>
                             </div> -->
                     </div>
+
                 </div> <!-- row -->
             </div> <!-- container -->
         </div> <!-- footer top -->
