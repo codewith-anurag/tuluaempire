@@ -39,7 +39,7 @@
                                             Hotel       <input type="checkbox" name="tour_overview[]" class="checkbox-inline" id="tour_overview" value="hotel" style="margin-left: 5px">
                                             Meal        <input type="checkbox" name="tour_overview[]" class="checkbox-inline" id="tour_overview" value="meal" style="margin-left: 5px">
                                             Sightseeing <input type="checkbox" name="tour_overview[]" class="checkbox-inline" id="tour_overview" value="sightseeing" style="margin-left: 5px">
-                                            Transport   <input type="checkbox" name="tour_overview[]" class="checkbox-inline" id="tour_overview" value="Transport" style="margin-left: 5px">
+                                            Transport   <input type="checkbox" name="tour_overview[]" class="checkbox-inline" id="tour_overview" value="transport" style="margin-left: 5px">
                                         @error('tour_overview[]')
                                             <div class="input_error">{{ $message }}</div>
                                         @enderror

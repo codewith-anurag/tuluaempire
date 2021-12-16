@@ -24,7 +24,7 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-10 offset-md-1">
-             
+
             <h2> {{$theme_title}} </h2>
          </div>
       </div>

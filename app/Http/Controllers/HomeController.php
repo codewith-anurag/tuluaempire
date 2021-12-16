@@ -14,6 +14,7 @@ use App\Models\SubPackage;
 use App\Models\Ourservice;
 use Illuminate\Support\Facades\Crypt;
 
+
 class HomeController extends Controller
 {
     /**
@@ -34,6 +35,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if (Auth::check()) {
+            $request->session()->forget('success');
             $request->session()->flash('success', 'Welcome '.Auth::user()->name);
 
             /** get Total Slider */

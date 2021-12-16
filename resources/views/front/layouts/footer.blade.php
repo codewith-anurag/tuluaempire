@@ -1,5 +1,4 @@
 <!--====== FOOTER PART START ======-->
-
 <footer id="footer-part">
         <div class="footer-top pt-40 pb-70">
             <div class="container">
@@ -168,7 +167,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="copyright text-md-left text-center pt-15">
-                            <p> © Copyright 2020. All Rights Reserved by &nbsp; <a target="_blank" href="https://www.glasierinc.com/" style="color: #f8992d;">Glasier Inc</a> </p>
+                            <p> © Copyright {{date('Y')}}. All Rights Reserved by &nbsp; <a target="_blank" href="https://www.glasierinc.com/" style="color: #f8992d;">Tulua Empire</a> </p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -258,7 +257,7 @@
                             </div> -->
                             <div class="popup-country-code">
                                 <input  id="phone10"  type="tel" name="phone" required="required" />
-                                <input type="text" name="country_code" class="form-control" id="country_code">
+
                             </div>
                             <br>
                             <!-- <div class="form-group">

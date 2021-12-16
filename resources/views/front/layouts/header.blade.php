@@ -42,7 +42,7 @@
                     </div>
                 </div> -->
                 <div class="row">
-                    <div class="container">
+                    <div class="container messages">
                             <div class="col-md-12">
                                 <marquee class="maq" behavior="scroll" direction="left" scrollamount="18"> Welcome to Tulua Empire Pvt. Ltd.  We are there for you.. &#128522; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome to Tulua Empire Pvt. Ltd.  We are there for you.. &#128522;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome to Tulua Empire Pvt. Ltd.  We are there for you.. &#128522;  </marquee>
                                 @if ($message = Session::get('success'))
@@ -99,7 +99,7 @@
           <label for="showDrop" class="mobile-item">Packages</label>
           <ul class="drop-menu">
             @foreach ($packages as $packages_list)
-                <li><a href="{{$packages_list->packge_slug}}" class="size">{{$packages_list->package_title}}</a></li>
+                <li><a href="{{route('frontpackages',$packages_list->packge_slug)}}" class="size">{{$packages_list->package_title}}</a></li>
             @endforeach
           </ul>
         </li>

@@ -13,7 +13,7 @@ class ContactController extends Controller
         return view('admin.contactus.index',$data);
     }
 
-    public function delete_inquiry(Request $request,$id){
+    public function delete_contact(Request $request,$id){
         $id = Crypt::decrypt($id);
 
 

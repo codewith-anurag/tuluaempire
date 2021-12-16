@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Crypt;
 
 class SliderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     public function index(){
         $data['siders'] = Slider::orderBy('id','desc')->get();
         return view('admin.slider.index',$data);

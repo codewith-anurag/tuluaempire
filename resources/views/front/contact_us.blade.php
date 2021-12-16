@@ -51,55 +51,51 @@
                         <div class="section-title">
                             <h5>Contact Us</h5>
                             <h2>Keep in touch</h2>
+
                         </div> <!-- section title -->
                         <div class="main-form pt-45">
-                            <form id="contact-form" action="test.php" method="post" data-toggle="validator" novalidate="true">
+                            <form id="contact-form" action="{{url('send_contactus')}}" method="post" data-toggle="validator" novalidate="true">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="singel-form form-group has-error has-danger">
                                             <input name="name" type="text" placeholder="Your name*" data-error="Name is required." required="required">
-                                            <!-- <div class="help-block with-errors"><ul class="list-unstyled"><li>Name is required.</li></ul></div> -->
-                                        </div> <!-- singel form -->
+
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="singel-form form-group">
                                             <input name="email" type="email" placeholder="Email*" data-error="Valid email is required." required="required">
                                             <div class="help-block with-errors"></div>
-                                        </div> <!-- singel form -->
+                                        </div>
                                     </div>
                                     <div class="col-md-12 contact-code">
 
                                         <input id="phonewater" type="tel" name="phone" required="required" />
 
                                     </div>
-                             <!--        <div class="col-md-6">
-                                        <div class="singel-form form-group">
-                                            <input name="subject" type="text" placeholder="Country Code*" data-error="Subject is required." required="required">
-                                            <div class="help-block with-errors"></div>
-                                        </div> <
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="singel-form form-group has-error has-danger">
-                                            <input name="phone" type="text" placeholder="Phone*" data-error="Phone is required." required="required"> -->
-                                            <!-- <div class="help-block with-errors"><ul class="list-unstyled"><li>Phone is required.</li></ul></div> -->
-                                     <!--    </div>
-                                    </div> -->
+
                                     <div class="col-md-12">
                                         <div class="singel-form form-group">
                                             <textarea name="messege" placeholder="Messege*" data-error="Please,leave us a message." required="required"></textarea>
                                             <div class="help-block with-errors"></div>
-                                        </div> <!-- singel form -->
+                                        </div>
                                     </div>
-                                    <p class="form-message"></p>
+
+                                    <p class="form-message">
+
+
+                                    </p>
+
                                     <div class="col-md-12">
                                         <div class="singel-form">
-                                            <button type="submit" class="main-btn disabled">Send</button>
-                                        </div> <!-- singel form -->
+                                            <button type="submit" class="main-btn disabled contact ">Send</button>
+                                        </div>
                                     </div>
-                                </div> <!-- row -->
+                                </div>
                             </form>
-                        </div> <!-- main form -->
-                    </div> <!--  contact from -->
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="contact-address">
@@ -218,4 +214,15 @@
 <div class="hidden-xs wave__footer">
             <div class="wave__ft1"></div>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+$(".contact").on("click",function(){
+
+    jQuery("div .messages").animate({ scrollTop: jQuery(window).height()}, 1500);
+
+});
+
+
+</script>
 @endsection

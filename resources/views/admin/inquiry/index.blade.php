@@ -36,6 +36,7 @@
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Location</th>
+                                        <th>Note</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>

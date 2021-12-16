@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="cont">
-                            <a href="tourist_places.php">
+                            <a href="{{route('frontaboutdubai_subcategory',$aboutdubai_list->category_slug.'/'.Crypt::encrypt($aboutdubai_list->id))}}">
                                 <h4> {{ $aboutdubai_list->title }} </h4>
                             </a>
                         </div>
