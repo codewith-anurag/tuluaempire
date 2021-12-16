@@ -48,13 +48,13 @@
                                 <h6>Menu</h6>
                             </div>
                             <ul>
-                                <li><a href="index.php"><i class="fa fa-angle-right"></i>Home</a></li>
-                                <li><a href="about_us.php"><i class="fa fa-angle-right"></i>About us</a></li>
+                                <li><a href="{{route('index')}}"><i class="fa fa-angle-right"></i>Home</a></li>
+                                <li><a href="{{route('about_us')}}"><i class="fa fa-angle-right"></i>About us</a></li>
                                 <li><a href="our_services.php#service1"><i class="fa fa-angle-right"></i> Our Services </a></li>
                                 <li><a href="hidden_gems.php"><i class="fa fa-angle-right"></i>Packages</a></li>
                                 <li><a href="culture_attractions.php#desert"><i class="fa fa-angle-right"></i>Themes</a></li>
                                 <li><a href="premiumactivities.php#premium_1"><i class="fa fa-angle-right"></i>Premium Activities</a></li>
-                                <li><a href="contact_us.php"><i class="fa fa-angle-right"></i>Contact Us </a></li>
+                                <li><a href="{{route('contact_us')}}"><i class="fa fa-angle-right"></i>Contact Us </a></li>
                                 <!-- <li><a href="#"><i class="fa fa-angle-right"></i>Theme</a></li>
                                 <li><a href="#"><i class="fa fa-angle-right"></i>Other Service</a></li> -->
                             </ul>
@@ -154,18 +154,29 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="copyright text-md-left text-center pt-15">
-                            <p> © Copyright {{date('Y')}}. All Rights Reserved by &nbsp; <a target="_blank" href="https://www.glasierinc.com/" style="color: #f8992d;">Tulua Empire</a> </p>
+                            <p> © Copyright {{date('Y')}}. All Rights Reserved by &nbsp; <a target="_blank" href="{{route('index')}}" style="color: #f8992d;">{{env('APP_NAME')}}</a> </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="copyright text-md-right text-center pt-15">
                         <div class="footer-about">
-                                   <ul>
-                                <li><a href="https://www.facebook.com/tuluaempire"><i class="fa fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="https://www.linkedin.com/in/tuluaempire/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.instagram.com/tuluaempire/"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
+                                <ul>
+                                    @if($setting_detail->facebook != NULL)
+                                        <li><a href="{{$setting_detail->facebook}}"><i class="fa fa-facebook-f"></i></a></li>
+                                    @endif
+                                    @if($setting_detail->twitter != NULL)
+                                        <li><a href="{{$setting_detail->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                    @endif
+                                    @if($setting_detail->linkdin != NULL)
+                                        <li><a href="{{$setting_detail->linkdin}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                    @endif
+                                    @if($setting_detail->instagram != NULL)
+                                        <li><a href="{{$setting_detail->instagram}}"><i class="fa fa-instagram"></i></a></li>
+                                    @endif
+                                    @if($setting_detail->youtube != NULL)
+                                        <li><a href="{{$setting_detail->youtube}}"><i class="fa fa-youtub"></i></a></li>
+                                    @endif
+                                </ul>
                             </div>
                         </div>
                     </div>

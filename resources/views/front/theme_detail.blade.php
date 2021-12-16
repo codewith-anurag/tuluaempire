@@ -79,7 +79,8 @@
               </div>
               <!-- section title -->
               <div class="main-form pt-45">
-                 <form id="contact-form" action="test.php" method="post" data-toggle="validator" novalidate="true">
+                <form id="contact-form" action="{{url('send_contactus')}}" method="post" data-toggle="validator" novalidate="true">
+                    @csrf
                     <div class="row">
                        <div class="col-md-6">
                           <div class="singel-form form-group has-error has-danger">

@@ -13,7 +13,7 @@
     <title>{{env('APP_NAME')}}</title>
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{asset('front/img/favicon.png')}}" type="image/png">
+        <link rel="shortcut icon" href="{{asset('front/img/favicon.png')}}" type="image/png">
 
     <!--====== Slick css ======-->
 
@@ -55,6 +55,8 @@
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <link rel="stylesheet"  href="{{asset('front/src/css/lightslider.css')}}"/>
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
   <style>
       .fa-whatsapp  {
@@ -125,15 +127,8 @@
         <!--====== jquery js ======-->
         <script src="{{asset('front/js/vendor/modernizr-3.6.0.min.js')}}"></script>
         <!-- <script src="js/vendor/jquery-1.12.4.min.js"></script> -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        <script>
-            $("#phone10").on("click",function(){
-               var code =  $(".iti__country-list").children(".iti__country").attr("data-dial-code");
-               alert(code);
-            });
 
-        </script>
 
         <!--====== Bootstrap js ======-->
         <!-- <script src="js/bootstrap.js"></script> -->
@@ -217,6 +212,33 @@
 
 
 
+<script>
+    $(document).ready(function() {
+        var code = $(this).find('.iti__dial-code').html();
+        $("#phonewater").val(code);
+       $('.iti__country').click(function(event) {
+          var code = $(this).find('.iti__dial-code').html();
+          $("#phonewater").val(code);
+          if (event.keyCode === 13) {
+             $("#phonewater").val(code);
+           }
+       });
 
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var code = $(this).find('.iti__dial-code').html();
+        $("#phone10").val(code);
+       $('.iti__country').click(function(event) {
+          var code = $(this).find('.iti__dial-code').html();
+          $("#phone10").val(code);
+          if (event.keyCode === 13) {
+             $("#phone10").val(code);
+           }
+       });
+
+    });
+</script>
 </body>
 </html>

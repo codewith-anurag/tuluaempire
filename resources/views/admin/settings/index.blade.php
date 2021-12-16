@@ -28,24 +28,33 @@
                     <div class="card-body">
                         <h4 class="card-title">General Settings</h4>
                             <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputUsername1">Welcome Message</label>
+                                        <input type="text"   name="welcome_msg" class="form-control" id="welcome_msg" value="{{$setings_data->welcome_msg}}">
+                                        <input type="hidden" name="settingid" id="id" value="{{$setings_data->id}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Whats App Number</label>
-                                        <input type="text"  minlength="1" max="12" maxlength="12" name="whatsapp_number" class="form-control" id="whatsapp_number" value="{{$setings_data->whatsapp_number}}">
-                                        <input type="hidden" name="settingid" id="id" value="{{$setings_data->id}}">
+                                        <input type="text"  minlength="1" max="14" maxlength="14" name="whatsapp_number" class="form-control" id="whatsapp_number" value="{{$setings_data->whatsapp_number}}">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Phone Number</label>
-                                        <input type="text"  minlength="1" max="12" maxlength="12" name="phone" class="form-control" id="phone" value="{{$setings_data->phone}}">
+                                        <input type="text"  minlength="1" max="14" maxlength="14" name="phone" class="form-control" id="phone" value="{{$setings_data->phone}}">
 
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleInputUsername1">Mobile Number</label>
-                                        <input type="text"  minlength="1" max="12" maxlength="12" name="mobile" class="form-control" id="mobile" value="{{$setings_data->mobile}}">
+                                        <input type="text"  minlength="1" max="14" maxlength="14" name="mobile" class="form-control" id="mobile" value="{{$setings_data->mobile}}">
 
                                     </div>
                                 </div>
