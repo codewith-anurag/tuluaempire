@@ -97,24 +97,36 @@ class FrontController extends Controller
         return view('front.premium_activity',$data);
     }
 
-    public function themes_detail($id)
+    public function themes_detail($id="")
     {
-        $data['subtheme_id'] = Crypt::decrypt($id);
-        $theme = SubTheme::where('id',$data['subtheme_id'])->where('status',1)->first();
+        if($id !=""){
+            $data['subtheme_id'] = Crypt::decrypt($id);
+            $theme = SubTheme::where('id',$data['subtheme_id'])->where('status',1)->first();
 
+            $themeData =  DB::table('themes')->where('id', $theme->theme_id)->first();
+            $data['theme_title'] = $themeData->title;
 
-        $themeData =  DB::table('themes')->where('id', $theme->theme_id)->first();
-        $data['theme_title'] = $themeData->title;
-
-        $data['subthemes'] = SubTheme::where('theme_id',$theme->theme_id)->where('status',1)->get();
+            $data['subthemes'] = SubTheme::where('theme_id',$theme->theme_id)->where('status',1)->get();
+        }else{
+            $data['theme_title'] = "";
+            $data['subthemes'] = SubTheme::where('status',1)->get();
+        }
         return view('front.theme_detail',$data);
     }
 
-    public function packages_detail ($slug){
+    public function packages_detail ($slug=""){
 
-        $data['package_detail'] = Package::where('packge_slug',$slug)->where('status',1)->first();
-        $data['subpackage_detail'] = SubPackage::where('packge_slug',$slug)->where('status',1)->get();
+        if($slug !=""){
+            $data['package_detail'] = Package::where('packge_slug',$slug)->where('status',1)->first();
+            $data['subpackage_detail'] = SubPackage::where('packge_slug',$slug)->where('status',1)->get();
 
+
+        }else{
+            $data['package_detail'] = $data['package_detail'] = Package::orderBy('id','Desc')->limit(0,1)->first();
+
+            $data['subpackage_detail'] = SubPackage::where('package_id',$data['package_detail']->id)->where('status',1)->get();
+
+        }
         return view('front.package_detail',$data);
     }
 

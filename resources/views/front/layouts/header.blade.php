@@ -7,19 +7,19 @@
                 <div class="header-contact text-lg-left text-center">
                    <ul>
                       @if($setting_detail->facebook !=NULL)
-                      <li> <a href="{{$setting_detail->facebook}}" class="social"> <i class="fa fa-facebook-f"></i> </a> </li>
+                      <li> <a href="{{$setting_detail->facebook}}" class="social" target="_blank"> <i class="fa fa-facebook-f"></i> </a> </li>
                       @endif
                       @if($setting_detail->twitter !=NULL)
-                      <li> <a href="{{$setting_detail->twitter}}" class="social"> <i class="fa fa-twitter"></i> </a> </li>
+                      <li> <a href="{{$setting_detail->twitter}}" class="social" target="_blank"> <i class="fa fa-twitter"></i> </a> </li>
                       @endif
                       @if($setting_detail->linkdin !=NULL)
-                      <li> <a href="{{$setting_detail->linkdin}}" class="social"> <i class="fa fa-linkedin" aria-hidden="true"></i> </a> </li>
+                      <li> <a href="{{$setting_detail->linkdin}}" class="social" target="_blank"> <i class="fa fa-linkedin" aria-hidden="true"></i> </a> </li>
                       @endif
                       @if($setting_detail->instagram !=NULL)
-                      <li> <a href="{{$setting_detail->instagram}}" class="social"> <i class="fa fa-instagram"></i> </a> </li>
+                      <li> <a href="{{$setting_detail->instagram}}" class="social" target="_blank"> <i class="fa fa-instagram"></i> </a> </li>
                       @endif
                       @if($setting_detail->youtube !=NULL)
-                      <li> <a href="{{$setting_detail->youtube}}" class="social"> <i class="fa fa-youtube"></i> </a> </li>
+                      <li> <a href="{{$setting_detail->youtube}}" class="social" target="_blank"> <i class="fa fa-youtube"></i> </a> </li>
                       @endif
                    </ul>
                 </div>

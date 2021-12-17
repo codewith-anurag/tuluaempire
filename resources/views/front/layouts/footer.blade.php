@@ -50,10 +50,10 @@
                             <ul>
                                 <li><a href="{{route('index')}}"><i class="fa fa-angle-right"></i>Home</a></li>
                                 <li><a href="{{route('about_us')}}"><i class="fa fa-angle-right"></i>About us</a></li>
-                                <li><a href="our_services.php#service1"><i class="fa fa-angle-right"></i> Our Services </a></li>
-                                <li><a href="hidden_gems.php"><i class="fa fa-angle-right"></i>Packages</a></li>
-                                <li><a href="culture_attractions.php#desert"><i class="fa fa-angle-right"></i>Themes</a></li>
-                                <li><a href="premiumactivities.php#premium_1"><i class="fa fa-angle-right"></i>Premium Activities</a></li>
+                                <li><a href="{{route('frontourservices')}}"><i class="fa fa-angle-right"></i> Our Services </a></li>
+                                <li><a href="{{route('frontpackages')}}"><i class="fa fa-angle-right"></i>Packages</a></li>
+                                <li><a href="{{route('frontthemes')}}"><i class="fa fa-angle-right"></i>Themes</a></li>
+                                <li><a href="{{route('frontpremiumactivity')}}"><i class="fa fa-angle-right"></i>Premium Activities</a></li>
                                 <li><a href="{{route('contact_us')}}"><i class="fa fa-angle-right"></i>Contact Us </a></li>
                                 <!-- <li><a href="#"><i class="fa fa-angle-right"></i>Theme</a></li>
                                 <li><a href="#"><i class="fa fa-angle-right"></i>Other Service</a></li> -->
@@ -162,19 +162,19 @@
                         <div class="footer-about">
                                 <ul>
                                     @if($setting_detail->facebook != NULL)
-                                        <li><a href="{{$setting_detail->facebook}}"><i class="fa fa-facebook-f"></i></a></li>
+                                        <li><a href="{{$setting_detail->facebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
                                     @endif
                                     @if($setting_detail->twitter != NULL)
-                                        <li><a href="{{$setting_detail->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="{{$setting_detail->twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
                                     @endif
                                     @if($setting_detail->linkdin != NULL)
-                                        <li><a href="{{$setting_detail->linkdin}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                        <li><a href="{{$setting_detail->linkdin}}" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                     @endif
                                     @if($setting_detail->instagram != NULL)
-                                        <li><a href="{{$setting_detail->instagram}}"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="{{$setting_detail->instagram}}" target="_blank"><i class="fa fa-instagram"></i></a></li>
                                     @endif
                                     @if($setting_detail->youtube != NULL)
-                                        <li><a href="{{$setting_detail->youtube}}"><i class="fa fa-youtub"></i></a></li>
+                                        <li><a href="{{$setting_detail->youtube}}" target="_blank"><i class="fa fa-youtub"></i></a></li>
                                     @endif
                                 </ul>
                             </div>

@@ -146,11 +146,7 @@ class About_dubaicategoryController extends Controller
                     $request->session()->flash('success', 'About Dubai Category Delete Successfully.');
                     return redirect(route('about-dubai-category'));
                 }
-
-            
         }
-
-
     }
 
     public function change_status(Request $request){

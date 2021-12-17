@@ -55,7 +55,7 @@
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <link rel="stylesheet"  href="{{asset('front/src/css/lightslider.css')}}"/>
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
-          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
   <style>

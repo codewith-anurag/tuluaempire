@@ -41,9 +41,9 @@ View::composer(['front.layouts.footer'], function ($data) {
 });
 
 Route::get('frontourservices',[App\Http\Controllers\FrontController::class, 'ourservices'])->name('frontourservices');
-Route::get('frontthemes/{id}',[App\Http\Controllers\FrontController::class, 'themes_detail'])->name('frontthemes');
+Route::get('frontthemes/{id?}',[App\Http\Controllers\FrontController::class, 'themes_detail'])->name('frontthemes');
 Route::get('frontpremiumactivity',[App\Http\Controllers\FrontController::class, 'premium_activity'])->name('frontpremiumactivity');
-Route::get('frontpackages/{slug}',[App\Http\Controllers\FrontController::class, 'packages_detail'])->name('frontpackages');
+Route::get('frontpackages/{slug?}/{id?}',[App\Http\Controllers\FrontController::class, 'packages_detail'])->name('frontpackages');
 Route::get('frontaboutdubai_subcategory/{slug?}/{id?}',[App\Http\Controllers\FrontController::class, 'aboutdubai_subcategory'])->name('frontaboutdubai_subcategory');
 
 Route::post('send_inquiry',[App\Http\Controllers\FrontController::class, 'send_inquiry'])->name('send_inquiry');
