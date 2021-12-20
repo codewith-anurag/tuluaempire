@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use App\Models\ContactSetting;
+use App\Helper\CryptoCode;
 
 
 
@@ -37,7 +38,7 @@ class FrontController extends Controller
 
     public function aboutdubai_subcategory($slug,$id)
     {
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $subcategory_data                     = About_dubaisubcategory::where('category_id',$id)->get();
         $data['subcategory']                  = About_dubaisubcategory::where('category_id',$id)->get();
 
@@ -100,7 +101,7 @@ class FrontController extends Controller
     public function themes_detail($id="")
     {
         if($id !=""){
-            $data['subtheme_id'] = Crypt::decrypt($id);
+            $data['subtheme_id'] = CryptoCode::decrypt($id);
             $theme = SubTheme::where('id',$data['subtheme_id'])->where('status',1)->first();
 
             $themeData =  DB::table('themes')->where('id', $theme->theme_id)->first();
@@ -162,8 +163,6 @@ class FrontController extends Controller
        $to_email    = $request->email;
        $phone       = $request->phone;
        $message     = $request->messege;
-
-
 
         $data        = ["name"=>$name,"email"=>$to_email,"phone"=>$phone,"usermessage"=>$message];
         $Insert_Data = ["name"=>$name,"email"=>$to_email,"phone"=>$phone,"message"=>$message];

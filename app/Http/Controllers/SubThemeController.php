@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SubTheme;
 use App\Models\Theme;
-use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class SubThemeController extends Controller
 {
     public function index($theme_id=""){
 
-        $theme_id = Crypt::decrypt($theme_id);
+        $theme_id = CryptoCode::decrypt($theme_id);
         $subtheme  = new SubTheme();
         $theme_data = $subtheme->get_theme($theme_id);
 
@@ -39,9 +39,9 @@ class SubThemeController extends Controller
             'description' => 'Description is required.',
 
         ]);
-        $theme_id       = Crypt::decrypt($request->theme_id);
-        $theme_data          = Theme::where('id',$theme_id)->first();
-        //dd($theme_data);
+        $theme_id       = CryptoCode::decrypt($request->theme_id);
+        $theme_data     = Theme::where('id',$theme_id)->first();
+
 
         $theme_slug     = $theme_data->theme_slug;
 
@@ -55,19 +55,19 @@ class SubThemeController extends Controller
         if($image){
             $request->image->move(public_path('subtheme_image'), $imageName);
             $request->session()->flash('success', 'Sub theme Add Successfully.');
-            return redirect(route('subthemes',Crypt::encrypt($theme_id)));
+            return redirect(route('subthemes',CryptoCode::encrypt($theme_id)));
         }
     }
 
     public function edit_subthemes($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_subtheme'] = SubTheme::where('id',$id)->first();
 
         return view('admin.subthemes.edit',$data);
     }
 
     public function update_subthemes(Request $request){
-        $theme_id   = Crypt::encrypt($request->theme_id);
+        $theme_id   = CryptoCode::encrypt($request->theme_id);
         $id         = $request->subtheme_id;
         $title      = $request->title;
         $slug       =  str_replace(" ","_",strtolower(substr($title, 0,20)));
@@ -100,8 +100,8 @@ class SubThemeController extends Controller
     }
 
     public function delete_subthemes(Request $request,$id,$theme_id){
-        $id = Crypt::decrypt($id);
-        $theme_id = Crypt::encrypt($theme_id);
+        $id = CryptoCode::decrypt($id);
+        //$theme_id = CryptoCode::encrypt($theme_id);
         $Exist_files = SubTheme::where('id',$id)->first();
 
         if( file_exists(public_path("subtheme_image/").$Exist_files->image)) {

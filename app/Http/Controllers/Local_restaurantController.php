@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Local_restaurant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class Local_restaurantController extends Controller
 {
@@ -19,7 +20,7 @@ class Local_restaurantController extends Controller
         return view('admin.restaurant.index',$data);
     }
     public function edit_restaurant($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_restaurant'] = Local_restaurant::where('id',$id)->first();
         return view('admin.restaurant.edit',$data);
     }
@@ -110,7 +111,7 @@ class Local_restaurantController extends Controller
     }
 
     public function delete_restaurant(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $Exist_files = Local_restaurant::where('id',$id)->first();
 
         if( file_exists(public_path("resturant_image/").$Exist_files->resturant_image)) {

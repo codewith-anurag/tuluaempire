@@ -42,6 +42,9 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <img src='{{asset("subtheme_image/".$edit_subtheme->image)}}' alt=""  height="100">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
@@ -58,7 +61,7 @@
                     </div>
                     <div class="card-footer">
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{route('subthemes',Crypt::encrypt($edit_subtheme->theme_id))}}" class="btn btn-light">Cancel</a>
+                            <a href="{{route('subthemes',CryptoCode::encrypt($edit_subtheme->theme_id))}}" class="btn btn-light">Cancel</a>
 
                         </div>
                     </div>

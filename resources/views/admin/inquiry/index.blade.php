@@ -52,7 +52,7 @@
                                                 <td>{{$inquiry_value->location}}</td>
                                                 <td>{{$inquiry_value->note}}</td>
                                                 <td>
-                                                 <a href="{{ route('delete-inquiry',Crypt::encrypt($inquiry_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')"
+                                                 <a href="{{ route('delete-inquiry',CryptoCode::encrypt($inquiry_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')"
                                                     class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i> </a>
                                                 </td>
                                             </tr>

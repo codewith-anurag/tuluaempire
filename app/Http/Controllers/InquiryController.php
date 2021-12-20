@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database;
 use App\Models\Inquiry;
-use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class InquiryController extends Controller
 {
@@ -15,13 +15,13 @@ class InquiryController extends Controller
     }
 
     public function delete_inquiry(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
 
 
         $slider = Inquiry::find($id)->delete();
         if($slider){
             $request->session()->flash('success', 'Inquiry Delete Successfully.');
-            return redirect('inquiry');
+            return redirect(route('inquiry'));
         }
     }
 }

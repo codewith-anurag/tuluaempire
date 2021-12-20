@@ -57,9 +57,9 @@
                                                     <span class="slider round"></span>
                                                 </label>
                                                 @endif
-                                                    <a href="{{route('subpackages',Crypt::encrypt($package_value->id))}}" class="btn btn-info" style="height:35px;" title="View SubPackges"><i class="fa fa-eye mt-2"></i></a>
-                                                    <a href="{{ route('edit-packages',Crypt::encrypt($package_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
-                                                    <a  href="{{ route('delete-packages',Crypt::encrypt($package_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
+                                                    <a href="{{route('subpackages',CryptoCode::encrypt($package_value->id))}}" class="btn btn-info" style="height:35px;" title="View SubPackges"><i class="fa fa-eye mt-2"></i></a>
+                                                    <a href="{{ route('edit-packages',CryptoCode::encrypt($package_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
+                                                    <a  href="{{ route('delete-packages',CryptoCode::encrypt($package_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>
@@ -140,7 +140,7 @@ function change_status(id) {
         if (isConfirm) {
             $.ajax({
                 type: "POST",
-                url: "{{url('/packages_changestatus')}}",
+                url: "{{url('admin/packages_changestatus')}}",
                 data : {
                     _token: _token,
                     id : id,

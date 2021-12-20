@@ -7,6 +7,7 @@ use App\Models\About_dubaicategory;
 use App\Models\About_dubaisubcategory;
 use App\Models\Local_restaurant;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class About_dubaicategoryController extends Controller
 {
@@ -47,7 +48,7 @@ class About_dubaicategoryController extends Controller
     }
 
     public function edit_category($id){
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $data['edit_category'] = About_dubaicategory::where('id',$id)->first();
         return view('admin.aboutdubai_category.edit',$data);
     }
@@ -94,7 +95,7 @@ class About_dubaicategoryController extends Controller
     }
 
     public function delete_category(Request $request,$id){
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $Exist_files = About_dubaicategory::where('id',$id)->first();
 
         $get_subcategory  = About_dubaisubcategory::where('category_id',$id)->first();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\SubPackage;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class PackageController extends Controller
 {
@@ -58,7 +59,7 @@ class PackageController extends Controller
     }
 
     public function edit_packages($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_packages'] = Package::where('id',$id)->first();
         return view('admin.packge.edit',$data);
     }
@@ -101,9 +102,9 @@ class PackageController extends Controller
     }
 
     public function delete_packages(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $get_subpackge = SubPackage::where("package_id",$id)->first();
-        
+
         if(empty($get_subpackge)){
             $slider = Package::find($id)->delete();
             if($slider){

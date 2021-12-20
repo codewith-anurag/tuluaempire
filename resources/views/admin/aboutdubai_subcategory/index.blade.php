@@ -69,10 +69,10 @@
                                                         <span class="slider round"></span>
                                                     </label>
                                                 @endif
-                                                <a href="{{ route('edit-aboutdubai-subcategory', Crypt::encrypt($subcategory_value->id)) }}"
+                                                <a href="{{ route('edit-aboutdubai-subcategory', CryptoCode::encrypt($subcategory_value->id)) }}"
                                                    class="btn btn-success" style="height:35px;"><i
                                                         class="fas fa-pencil-alt mt-2"></i></a>
-                                                <a href="{{ route('delete-aboutdubai-subcategory',Crypt::encrypt($subcategory_value->id)) }}"
+                                                <a href="{{ route('delete-aboutdubai-subcategory',CryptoCode::encrypt($subcategory_value->id)) }}"
                                                    onclick="return confirm('Are you sure want to Delete this record ?')"
                                                    class="btn btn-danger" style="height: 35px;"><i
                                                         class="fas fa-trash mt-2"></i></a>

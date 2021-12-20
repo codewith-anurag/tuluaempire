@@ -8,6 +8,7 @@ use App\Models\About_dubaicategory;
 use App\Models\Local_restaurant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class About_dubaisubcategoryController extends Controller
 {
@@ -147,7 +148,7 @@ class About_dubaisubcategoryController extends Controller
     }
 
     public function edit_subcategory($id){
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $data['category'] = About_dubaicategory::where("status",'1')->get();
         $data['edit_subcategory'] = About_dubaisubcategory::where('id',$id)->first();
         return view('admin.aboutdubai_subcategory.edit',$data);
@@ -195,7 +196,7 @@ class About_dubaisubcategoryController extends Controller
     }
 
     public function delete_subcategory(Request $request,$id){
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $Exist_files = About_dubaisubcategory::where('id',$id)->first();
 
         if( file_exists(public_path("subcategory_image/").$Exist_files->subcategory_image)) {

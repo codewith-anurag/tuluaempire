@@ -7,6 +7,7 @@ use Illuminate\Database;
 use App\Models\Slider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class SliderController extends Controller
 {
@@ -42,12 +43,12 @@ class SliderController extends Controller
         if($image){
             $request->image->move(public_path('slider_images'), $imageName);
             $request->session()->flash('success', 'Slider Add Successfully.');
-            return redirect('slider_list');
+             return redirect(route('slider'));
         }
     }
 
     public function edit_slider($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_slider'] = Slider::where('id',$id)->first();
         return view('admin.slider.edit',$data);
     }
@@ -60,7 +61,7 @@ class SliderController extends Controller
             if($image){
 
                 $request->session()->flash('success', 'Slider Update Successfully.');
-                return redirect('slider_list');
+                return redirect(route('slider'));
             }
 
         }else{
@@ -80,7 +81,7 @@ class SliderController extends Controller
             if($image){
                 $request->image->move(public_path('slider_images'), $imageName);
                 $request->session()->flash('success', 'Slider Update Successfully.');
-                return redirect('slider_list');
+                 return redirect(route('slider'));
             }
 
         }
@@ -88,7 +89,7 @@ class SliderController extends Controller
     }
 
     public function delete_slider(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $Exist_files = Slider::where('id',$id)->first();
         if( file_exists(public_path("slider_images/").$Exist_files->slider_image)) {
            unlink(public_path("slider_images/").$Exist_files->slider_image);
@@ -96,7 +97,7 @@ class SliderController extends Controller
         $slider = Slider::find($id)->delete();
         if($slider){
             $request->session()->flash('success', 'Slider Delete Successfully.');
-            return redirect('slider_list');
+            return redirect(route('slider'));
         }
     }
 

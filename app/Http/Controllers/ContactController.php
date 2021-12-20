@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class ContactController extends Controller
 {
@@ -14,13 +15,13 @@ class ContactController extends Controller
     }
 
     public function delete_contact(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
 
 
         $slider = Contact::find($id)->delete();
         if($slider){
             $request->session()->flash('success', 'Contact Delete Successfully.');
-            return redirect('contact');
+            return redirect(route('contact'));
         }
     }
 

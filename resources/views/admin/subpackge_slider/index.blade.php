@@ -17,7 +17,8 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="{{route('packages')}}">Packages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="{{route('subpackages',request()->segment(count(request()->segments())))}}">Sub Packages</a> </li>
+                        <?php $package_id = Session::get('package_id');?>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{{route('subpackages',$package_id)}}">Sub Packages</a> </li>
                         <li class="breadcrumb-item active" aria-current="page">Sub Packages Slider </li>
                     </ol>
                 </nav>

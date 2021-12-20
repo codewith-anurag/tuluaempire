@@ -29,11 +29,11 @@
                                         <label for="package_title">Title <span class="required_class">*</span></label>
                                         <input type="text" name="subpackage_title" class="form-control" id="subpackage_title" value="{{$edit_subpackages->subpackage_title}}">
                                         <input type="hidden" name="subpackage_id" value="{{$edit_subpackages->id}}" class="form-control">
-                                        <input type="hidden" name="package_id" value="{{Crypt::encrypt($edit_subpackages->package_id)}}" class="form-control">
+                                        <input type="hidden" name="package_id" value="{{CryptoCode::encrypt($edit_subpackages->package_id)}}" class="form-control">
                                         @error('subpackage_title')
                                             <div class="input_error">{{ $message }}</div>
                                         @enderror
-
+                                        
                                     </div>
                                 </div>
 

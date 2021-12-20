@@ -50,8 +50,8 @@
                                                 <td>{{$setings_data_value->phone2}}</td>
                                                 <td>{{$setings_data_value->email}}</td>
                                                 <td>
-                                                    <a href="{{ route('edit_contactsetting',Crypt::encrypt($setings_data_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
-                                                    <a  href="{{ route('delete_contactsetting',Crypt::encrypt($setings_data_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')"  class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
+                                                    <a href="{{ route('edit_contactsetting',CryptoCode::encrypt($setings_data_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
+                                                    <a  href="{{ route('delete_contactsetting',CryptoCode::encrypt($setings_data_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')"  class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
                                                 </td>
 
                                             </tr>

@@ -57,9 +57,9 @@
                                                     <span class="slider round"></span>
                                                 </label>
                                                 @endif
-                                                    <a href="{{route('subpackages-slider',Crypt::encrypt($subpackage_value->id))}}" class="btn btn-info" style="height:35px;" title="View SubPackges Slider"><i class="fa fa-images mt-2"></i></a>
-                                                    <a href="{{ route('edit-subpackages',Crypt::encrypt($subpackage_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
-                                                    <a  href="{{ route('delete-subpackages',Crypt::encrypt($subpackage_value->id).'/'.Crypt::encrypt($subpackage_value->package_id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
+                                                    <a href="{{route('subpackages-slider',CryptoCode::encrypt($subpackage_value->id))}}" class="btn btn-info" style="height:35px;" title="View SubPackges Slider"><i class="fa fa-images mt-2"></i></a>
+                                                    <a href="{{ route('edit-subpackages',CryptoCode::encrypt($subpackage_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
+                                                    <a  href="{{ route('delete-subpackages',CryptoCode::encrypt($subpackage_value->id).'/'.request()->segment(count(request()->segments()))) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>
@@ -140,7 +140,7 @@ function change_status(id) {
         if (isConfirm) {
             $.ajax({
                 type: "POST",
-                url: "{{url('/subpackages-change-status')}}",
+                url: "{{url('admin/subpackages-change-status')}}",
                 data : {
                     _token: _token,
                     id : id,

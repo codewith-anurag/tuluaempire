@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PremiumActivity;
-use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class PremiumActivityController extends Controller
 {
@@ -36,7 +36,7 @@ class PremiumActivityController extends Controller
 
                 'image' => 'Premium Activity Image is required.',
                 'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-                
+
                 'description' => 'Description is required.'
 
             ]
@@ -57,7 +57,7 @@ class PremiumActivityController extends Controller
 
     public function edit_premium_activity($id)
     {
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $data['edit_premiumactivity'] = PremiumActivity::where('id', $id)->first();
         return view('admin.premium_activity.edit', $data);
     }
@@ -107,7 +107,7 @@ class PremiumActivityController extends Controller
                 'premiumactivity_title.unique' => $request->premiumactivity_title . ' Premium Activity is already exists.',
                 'premiumactivity_title.max' => 'Please Enter 80 Character of Premium Activity Title.',
                 'image' => 'Premium Activity Image is required.',
-                'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",                
+                'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
                 'description' => 'Description is required.'
 
             ]
@@ -125,7 +125,7 @@ class PremiumActivityController extends Controller
 
     public function delete_premium_activity(Request $request, $id)
     {
-        $id =  Crypt::decrypt($id);
+        $id =  CryptoCode::decrypt($id);
         $Exist_files = PremiumActivity::where('id', $id)->first();
 
         if (file_exists(public_path("premiumactivity_image/") . $Exist_files->image)) {

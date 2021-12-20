@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class ReviewController extends Controller
 {
@@ -54,7 +55,7 @@ class ReviewController extends Controller
     }
 
     public function edit_reviews($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_review'] = Review::where('id',$id)->first();
         return view('admin.reviews.edit',$data);
     }
@@ -110,7 +111,7 @@ class ReviewController extends Controller
     }
 
     public function delete_reviews(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $Exist_files = Review::where('id',$id)->first();
 
         if( file_exists(public_path("review_image/").$Exist_files->review_image)) {

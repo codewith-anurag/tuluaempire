@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Ourservice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class OurserviceController extends Controller
 {
@@ -50,7 +51,7 @@ class OurserviceController extends Controller
     }
 
     public function edit_ourservices($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_service'] = Ourservice::where('id',$id)->first();
         return view('admin.ourservices.edit',$data);
     }
@@ -102,7 +103,7 @@ class OurserviceController extends Controller
     }
 
     public function delete_ourservices(Request $request,$id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $Exist_files = Ourservice::where('id',$id)->first();
 
         if( file_exists(public_path("ourservice_image/").$Exist_files->service_image)) {

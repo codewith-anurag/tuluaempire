@@ -7,7 +7,7 @@ use Illuminate\Database;
 use App\Models\Theme;
 use App\Models\SubTheme;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class ThemeController extends Controller
 {
@@ -35,12 +35,12 @@ class ThemeController extends Controller
         $image      =   Theme::create(["title" => $title ,"theme_slug" => $slug]);
         if($image){
             $request->session()->flash('success', 'Theme Add Successfully.');
-            return redirect('themes');
+            return redirect(route('themes'));
         }
     }
 
     public function edit_themes($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_theme'] = Theme::where('id',$id)->first();
         return view('admin.themes.edit',$data);
     }
@@ -60,20 +60,21 @@ class ThemeController extends Controller
         if($image){
 
             $request->session()->flash('success', 'Theme Update Successfully.');
-            return redirect('themes');
+            return redirect(route('themes'));
         }
     }
 
     public function delete_themes(Request $request,$id){
-        $id = Crypt::decrypt($id);
-        $subtheme = SubTheme::where('theme_id',$id)->get();
-        if(empty($subtheme)){
+        $id = CryptoCode::decrypt($id);
+        $subtheme = SubTheme::where('theme_id',$id)->first();
+
+        if($subtheme == NULL){
             Theme::find($id)->delete();
             $request->session()->flash('success', 'Theme Delete Successfully.');
-            return redirect('themes');
+            return redirect(route('themes'));
         }else{
             $request->session()->flash('success', 'Please First Delete Sub Themes.');
-            return redirect('themes');
+            return redirect(route('themes'));
         }
     }
 

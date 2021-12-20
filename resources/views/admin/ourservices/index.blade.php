@@ -55,8 +55,8 @@
                                                     <span class="slider round"></span>
                                                 </label>
                                                 @endif
-                                                    <a href="{{ route('edit-ourservices',Crypt::encrypt($ourservice_value->id))  }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
-                                                    <a  href="{{ route('delete-ourservices',Crypt::encrypt($ourservice_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
+                                                    <a href="{{ route('edit-ourservices',CryptoCode::encrypt($ourservice_value->id))  }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
+                                                    <a  href="{{ route('delete-ourservices',CryptoCode::encrypt($ourservice_value->id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>
@@ -137,7 +137,7 @@ function change_status(id) {
         if (isConfirm) {
             $.ajax({
                 type: "POST",
-                url: "{{url('/ourservices_changestatus')}}",
+                url: "{{url('admin/ourservices_changestatus')}}",
                 data : {
                     _token: _token,
                     id : id,

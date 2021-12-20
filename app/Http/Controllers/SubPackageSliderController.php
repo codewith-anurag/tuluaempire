@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\SubPackageSlider;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\SubPackage;
+use App\Helper\CryptoCode;
 
 class SubPackageSliderController extends Controller
 {
     public function index($subpackge_ID)
     {
-        $subpackge_ID = Crypt::decrypt($subpackge_ID);
+        $subpackge_ID = CryptoCode::decrypt($subpackge_ID);
         $SubPackage = new SubPackageSlider();
         $data['subpackage_slider'] = SubPackageSlider::where('subpackage_id',$subpackge_ID)->get();
         $SubpackageData = $SubPackage->get_subpackage($subpackge_ID);
@@ -22,7 +23,7 @@ class SubPackageSliderController extends Controller
     }
 
     public function create_subpackages_slider($subpackge_ID){
-        $data['subpackge_ID'] = Crypt::decrypt($subpackge_ID);
+        $data['subpackge_ID'] = CryptoCode::decrypt($subpackge_ID);
         return view('admin.subpackge_slider.create',$data);
     }
 
@@ -40,7 +41,7 @@ class SubPackageSliderController extends Controller
         $subpackage_image = $request->file('imageFile');
         $subpackage_id    = $request->subpackage_id;
         $subpackage_slug  =  SubPackage::where('id',$subpackage_id)->first();
-        
+
         if($subpackage_image){
             foreach($subpackage_image as $file){
                 $fileLink = rand(9999,999999);
@@ -53,23 +54,23 @@ class SubPackageSliderController extends Controller
 
         }
         $request->session()->flash('success', 'Sub Package Add Successfully.');
-        return redirect(route('subpackages-slider',Crypt::encrypt($subpackage_id)));
+        return redirect(route('subpackages-slider',CryptoCode::encrypt($subpackage_id)));
     }
 
     public function edit_subpackages_slider($id)
     {
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
 
         $data['edit_subpackages_slider'] = SubPackageSlider::where("id",$id)->first();
         //dd($data['edit_subpackages_slider']);
         return view('admin.subpackge_slider.edit',$data);
-        
+
     }
 
 
     public function update_subpackages_slider(Request $request){
         $id         = $request->subpackage_slider_id;
-        $subpackage_id = Crypt::encrypt($request->subpackage_id);
+        $subpackage_id = CryptoCode::encrypt($request->subpackage_id);
         $this->validate($request, [
             'imageFile' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=500,height=334',
         ],
@@ -92,7 +93,7 @@ class SubPackageSliderController extends Controller
 
     public function delete_subpackages_slider(Request $request,$id,$subpackage_id)
     {
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
 
         $Exist_files = SubPackageSlider::where('id',$id)->first();
         if( file_exists(public_path("subpackage_slider_image/").$Exist_files->image)) {
@@ -100,7 +101,7 @@ class SubPackageSliderController extends Controller
         }
         $slider = SubPackageSlider::find($id)->delete();
         if($slider){
-            
+
             $request->session()->flash('success', 'Sub Package Slider Image Delete Successfully.');
             return redirect(route('subpackages-slider',$subpackage_id));
         }

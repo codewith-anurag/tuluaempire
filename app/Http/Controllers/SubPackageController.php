@@ -7,12 +7,15 @@ use App\Models\SubPackage;
 use App\Models\Package;
 use App\Models\SubPackageSlider;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
+use Illuminate\Support\Facades\Session;
 
 class SubPackageController extends Controller
 {
     public function index($package_id="")
     {
-        $package_id = Crypt::decrypt($package_id);
+        $package_id = CryptoCode::decrypt($package_id);
+        Session::put('package_id', CryptoCode::encrypt($package_id));
 
         $Package = new SubPackage();
         $data['subpackage'] = SubPackage::where('package_id',$package_id)->get();
@@ -26,7 +29,7 @@ class SubPackageController extends Controller
     public function create_subpackages()
     {
         $encryptedValue = request()->segment(count(request()->segments()));
-        $data['package_id'] = Crypt::decrypt($encryptedValue);
+        $data['package_id'] = CryptoCode::decrypt($encryptedValue);
         return view('admin.subpackge.create',$data);
     }
     public function store_subpackages(Request $request){
@@ -76,12 +79,12 @@ class SubPackageController extends Controller
 
             }
             $request->session()->flash('success', 'Sub Package Add Successfully.');
-            return redirect(route('subpackages',Crypt::encrypt($package_id)));
+            return redirect(route('subpackages',CryptoCode::encrypt($package_id)));
         }
     }
 
     public function edit_subpackages($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_subpackages'] = SubPackage::where('id',$id)->first();
         return view('admin.subpackge.edit',$data);
     }
@@ -113,7 +116,7 @@ class SubPackageController extends Controller
     }
 
     public function delete_subpackages(Request $request,$id,$package_id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
 
         $getsubpackage_slider =  SubPackageSlider::where('subpackage_id',$id)->first();
         if(empty($getsubpackage_slider)){

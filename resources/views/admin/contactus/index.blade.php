@@ -49,7 +49,7 @@
                                                 <td>{{$contact_value->message}}</td>
 
                                                 <td>
-                                                 <a href="{{ route('delete-contact',Crypt::encrypt($contact_value->id)) }}"
+                                                 <a href="{{ route('delete-contact',CryptoCode::encrypt($contact_value->id)) }}"
                                                     onclick="return confirm('Are you sure want to Delete this record ?')"
                                                     class="btn btn-danger" style="height: 35px;"><i
                                                          class="fas fa-trash mt-2"></i></a></td>
