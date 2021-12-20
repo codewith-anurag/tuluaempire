@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ContactSetting;
 use Illuminate\Support\Facades\Crypt;
+use App\Helper\CryptoCode;
 
 class ContactSettingController extends Controller
 {
@@ -36,7 +37,7 @@ class ContactSettingController extends Controller
     }
 
     public function edit_contactsetting($id){
-        $id = Crypt::decrypt($id);
+        $id = CryptoCode::decrypt($id);
         $data['edit_contact_setting'] = ContactSetting::where('id',$id)->first();
 
         return view('admin.contactsetting.edit',$data);
