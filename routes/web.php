@@ -41,10 +41,10 @@ View::composer(['front.layouts.footer'], function ($data) {
 });
 
 Route::get('ourservices',[App\Http\Controllers\FrontController::class, 'ourservices'])->name('frontourservices');
-Route::get('themes/{id?}',[App\Http\Controllers\FrontController::class, 'themes_detail'])->name('frontthemes');
+Route::get('themes/{slug?}',[App\Http\Controllers\FrontController::class, 'themes_detail'])->name('frontthemes');
 Route::get('premiumactivity',[App\Http\Controllers\FrontController::class, 'premium_activity'])->name('frontpremiumactivity');
 Route::get('packages/{slug?}/{id?}',[App\Http\Controllers\FrontController::class, 'packages_detail'])->name('frontpackages');
-Route::get('aboutdubai_subcategory/{slug?}/{id?}',[App\Http\Controllers\FrontController::class, 'aboutdubai_subcategory'])->name('frontaboutdubai_subcategory');
+Route::get('subcategory/{slug?}',[App\Http\Controllers\FrontController::class, 'aboutdubai_subcategory'])->name('subcategory');
 
 Route::post('send_inquiry',[App\Http\Controllers\FrontController::class, 'send_inquiry'])->name('send_inquiry');
 Route::post('send_contactus',[App\Http\Controllers\FrontController::class, 'send_contactus'])->name('send_contactus');

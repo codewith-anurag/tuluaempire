@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\SubTheme;
 use App\Models\Theme;
 use App\Helper\CryptoCode;
+use Illuminate\Support\Str;
+
 
 class SubThemeController extends Controller
 {
@@ -46,7 +48,7 @@ class SubThemeController extends Controller
         $theme_slug     = $theme_data->theme_slug;
 
         $title          = $request->title;
-        $slug           =  str_replace(" ","_",strtolower(substr($title, 0,20)));
+        $slug           =  Str::slug($title);
 
         $imageName      =   time().'.'.$request->image->extension();
         $description    = $request->description;
@@ -70,11 +72,15 @@ class SubThemeController extends Controller
         $theme_id   = CryptoCode::encrypt($request->theme_id);
         $id         = $request->subtheme_id;
         $title      = $request->title;
-        $slug       =  str_replace(" ","_",strtolower(substr($title, 0,20)));
+        $slug       =  Str::slug($title);
         $description = $request->description;
 
         if($request->image == ""){
-            $image      =   SubTheme::where('id',$id)->update(["title"=>$title,"subtheme_slug"=>$slug,"image" =>$request->old_image,"description"=>$description]);
+
+            $theme_data     = Theme::where('id',$request->theme_id)->first();
+            $theme_slug     = $theme_data->theme_slug;
+
+            $image      =   SubTheme::where('id',$id)->update(["theme_slug"=>$theme_slug,"title"=>$title,"subtheme_slug"=>$slug,"image" =>$request->old_image,"description"=>$description]);
             if($image){
 
                 $request->session()->flash('success', 'Sub Theme Update Successfully.');
@@ -89,8 +95,12 @@ class SubThemeController extends Controller
             [
                 'title' => 'Theme Title is required.',
             ]);
+            $theme_data     = Theme::where('id',$request->theme_id)->first();
+            $theme_slug     = $theme_data->theme_slug;
+
             $imageName      =   time().'.'.$request->image->extension();
-            $image      =   SubTheme::where('id',$id)->update(["title"=>$title,"subtheme_slug"=>$slug,"image" =>$request->old_image,"description"=>$description]);
+
+            $image      =   SubTheme::where('id',$id)->update(["theme_slug"=>$theme_slug,"title"=>$title,"subtheme_slug"=>$slug,"image" =>$request->old_image,"description"=>$description]);
             if($image){
 
                 $request->session()->flash('success', 'Sub Theme Update Successfully.');

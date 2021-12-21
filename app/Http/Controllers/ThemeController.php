@@ -8,6 +8,7 @@ use App\Models\Theme;
 use App\Models\SubTheme;
 use Illuminate\Support\Facades\File;
 use App\Helper\CryptoCode;
+use Illuminate\Support\Str;
 
 class ThemeController extends Controller
 {
@@ -30,9 +31,9 @@ class ThemeController extends Controller
             'title.max'=> 'Please Enter 80 Character of Sub Package Title.',
 
         ]);
-        $title     = $request->title;
-        $slug      =   str_replace(" ","_",strtolower(substr($title, 0,20)));
-        $image      =   Theme::create(["title" => $title ,"theme_slug" => $slug]);
+        $title    = $request->title;
+        $slug     =   Str::slug($title);
+        $image    =   Theme::create(["title" => $title ,"theme_slug" => $slug]);
         if($image){
             $request->session()->flash('success', 'Theme Add Successfully.');
             return redirect(route('themes'));
@@ -48,7 +49,7 @@ class ThemeController extends Controller
     public function update_themes(Request $request){
         $id         = $request->theme_id;
         $title     = $request->title;
-        $slug      =   str_replace(" ","_",strtolower(substr($title, 0,20)));
+        $slug      =   Str::slug($title);
 
         $this->validate($request, [
             'title' => 'required|max:80',

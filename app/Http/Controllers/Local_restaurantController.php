@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Local_restaurant;
+use App\Models\About_dubaicategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
 use App\Helper\CryptoCode;
@@ -39,7 +40,12 @@ class Local_restaurantController extends Controller
             $resturant_lunch_or_dinner  = $_POST['resturant_lunch_or_dinner'];
             $resturant_lunch_or_dinner =    implode('/',$resturant_lunch_or_dinner);
 
-            $image      =   Local_restaurant::where('id',$id)->update(["resturant_title"=>$resturant_title,"resturant_arabic_title"=>$resturant_arabic_title,
+            $resturant_data = Local_restaurant::where('id',$id)->first();
+            $category_data  = About_dubaicategory::where('id',$resturant_data->category_id)->first();
+
+
+
+            $image      =   Local_restaurant::where('id',$id)->update(["category_slug"=>$category_data->category_slug,"resturant_title"=>$resturant_title,"resturant_arabic_title"=>$resturant_arabic_title,
             "resturant_image" =>$request->resturant_oldimage,"resturant_food_type"=>$resturant_food_type,"resturant_ratting"=>$resturant_ratting,"resturant_speciality"=>$resturant_speciality,"resturant_area"=>$resturant_area,"resturant_avg_cost_pp"=>$resturant_avg_cost_pp,"resturant_lunch_or_dinner"=>$resturant_lunch_or_dinner]);
             if($image){
                 $request->session()->flash('success', 'Restaurant Update Successfully.');
@@ -100,7 +106,11 @@ class Local_restaurantController extends Controller
             $resturant_lunch_or_dinner =    implode('/',$resturant_lunch_or_dinner);
 
             $imageName  =   time().'.'.$request->resturant_image->extension();
-            $image      =   Local_restaurant::where('id',$id)->update(["resturant_title"=>$resturant_title,"resturant_arabic_title"=>$resturant_arabic_title,
+
+            $resturant_data = Local_restaurant::where('id',$id)->first();
+            $category_data  = About_dubaicategory::where('id',$resturant_data->category_id)->first();
+
+            $image      =   Local_restaurant::where('id',$id)->update(["category_slug"=>$category_data->category_slug,"resturant_title"=>$resturant_title,"resturant_arabic_title"=>$resturant_arabic_title,
             "resturant_image" =>$imageName,"resturant_food_type"=>$resturant_food_type,"resturant_ratting"=>$resturant_ratting,"resturant_speciality"=>$resturant_speciality,"resturant_area"=>$resturant_area,"resturant_avg_cost_pp"=>$resturant_avg_cost_pp,"resturant_lunch_or_dinner"=>$resturant_lunch_or_dinner]);
             if($image){
                 $request->resturant_image->move(public_path('resturant_image'), $imageName);

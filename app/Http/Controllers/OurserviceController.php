@@ -6,6 +6,7 @@ use App\Models\Ourservice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
 use App\Helper\CryptoCode;
+use Illuminate\Support\Str;
 
 class OurserviceController extends Controller
 {
@@ -37,7 +38,7 @@ class OurserviceController extends Controller
 
         ]);
         $title          = $request->service_title;
-        $slug           =  str_replace(" ","_",strtolower(substr($title, 0,20)));
+        $slug           =  Str::slug($title);
         $imageName      =   time().'.'.$request->service_image->extension();
         $description    = $request->description;
 
@@ -57,10 +58,10 @@ class OurserviceController extends Controller
     }
 
     public function update_ourservices(Request $request){
-        $id        = $request->service_id;
-        $title     =   $request->service_title;
-        $slug      =  str_replace(" ","_",strtolower(substr($title, 0,20)));
-        $description    = $request->description;
+        $id          = $request->service_id;
+        $title       =   $request->service_title;
+        $slug        =  Str::slug($title);
+        $description = $request->description;
 
 
         if($request->service_image == ""){

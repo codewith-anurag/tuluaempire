@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="cont">
-                            <a href="{{route('frontaboutdubai_subcategory',$aboutdubai_list->category_slug.'/'.CryptoCode::encrypt($aboutdubai_list->id))}}">
+                            <a href="{{route('subcategory',$aboutdubai_list->category_slug)}}">
                                 <h4> {{ $aboutdubai_list->title }} </h4>
                             </a>
                         </div>

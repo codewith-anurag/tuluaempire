@@ -36,14 +36,16 @@ class FrontController extends Controller
         return view('front.index',$data);
     }
 
-    public function aboutdubai_subcategory($slug,$id)
+    public function aboutdubai_subcategory($slug)
     {
-        $id =  CryptoCode::decrypt($id);
-        $subcategory_data                     = About_dubaisubcategory::where('category_id',$id)->get();
-        $data['subcategory']                  = About_dubaisubcategory::where('category_id',$id)->get();
 
-        $localresturant_data                  = Local_restaurant::where('category_id',$id)->get();
-        $resturantdata['localresturant_data'] = Local_restaurant::where('category_id',$id)->get();
+
+        $subcategory_data                     = About_dubaisubcategory::where('category_slug',$slug)->get();
+
+        $data['subcategory']                  = $subcategory_data;
+
+        $localresturant_data                  = Local_restaurant::where('category_slug',$slug)->get();
+        $resturantdata['localresturant_data'] = Local_restaurant::where('category_slug',$slug)->get();
 
        // dd($subcategory_data);
         if($subcategory_data->count() > 0){
@@ -52,7 +54,7 @@ class FrontController extends Controller
 
                 if($subcate->template_type == "simple"){
 
-                    $categorydata   =  DB::table('about_dubaicategories')->where('id', $id)->first();
+                    $categorydata   =  DB::table('about_dubaicategories')->where('category_slug', $slug)->first();
                     $data['category_title'] = !empty($categorydata) ? $categorydata->title : "";
                     return view('front.aboutdubaisubcategory',$data);
 
@@ -64,7 +66,7 @@ class FrontController extends Controller
 
                 if($resturant->template_type == "localresturant"){
 
-                    $categorydata   =  DB::table('about_dubaicategories')->where('id', $id)->first();
+                    $categorydata   =  DB::table('about_dubaicategories')->where('category_slug', $slug)->first();
                     $resturantdata['category_title'] =  !empty($categorydata) ? $categorydata->title : '';
                     return view('front.localresturant',$resturantdata);
 
@@ -98,16 +100,17 @@ class FrontController extends Controller
         return view('front.premium_activity',$data);
     }
 
-    public function themes_detail($id="")
+    public function themes_detail($slug="")
     {
-        if($id !=""){
-            $data['subtheme_id'] = CryptoCode::decrypt($id);
-            $theme = SubTheme::where('id',$data['subtheme_id'])->where('status',1)->first();
+        if($slug !=""){
+            $data['subtheme_id'] = $slug;
+            $Subtheme = SubTheme::where('subtheme_slug',$data['subtheme_id'])->where('status',1)->first();
 
-            $themeData =  DB::table('themes')->where('id', $theme->theme_id)->first();
+
+            $themeData =  DB::table('themes')->where('id', $Subtheme->theme_id)->first();
             $data['theme_title'] = $themeData->title;
 
-            $data['subthemes'] = SubTheme::where('theme_id',$theme->theme_id)->where('status',1)->get();
+            $data['subthemes'] = SubTheme::where('theme_id',$Subtheme->theme_id)->where('status',1)->get();
         }else{
             $data['theme_title'] = "";
             $data['subthemes'] = SubTheme::where('status',1)->get();
@@ -121,10 +124,8 @@ class FrontController extends Controller
             $data['package_detail'] = Package::where('packge_slug',$slug)->where('status',1)->first();
             $data['subpackage_detail'] = SubPackage::where('packge_slug',$slug)->where('status',1)->get();
 
-
         }else{
-            $data['package_detail'] = $data['package_detail'] = Package::orderBy('id','Desc')->limit(0,1)->first();
-
+            $data['package_detail'] = Package::orderBy('id','Desc')->limit(0,1)->first();
             $data['subpackage_detail'] = SubPackage::where('package_id',$data['package_detail']->id)->where('status',1)->get();
 
         }

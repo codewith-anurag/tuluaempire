@@ -8,6 +8,7 @@ use App\Models\About_dubaisubcategory;
 use App\Models\Local_restaurant;
 use Illuminate\Support\Facades\Crypt;
 use App\Helper\CryptoCode;
+use Illuminate\Support\Str;
 
 class About_dubaicategoryController extends Controller
 {
@@ -35,8 +36,8 @@ class About_dubaicategoryController extends Controller
             'image.dimensions' => "Please Upload 370 X 251 Width and Height Image."
 
         ]);
-        $title     = $request->title;
-        $slug      =  str_replace(" ","_",strtolower(substr($title, 0,20)));
+        $title      =  $request->title;
+        $slug       =   $slug = Str::slug($request->title);
         $imageName  =   time().'.'.$request->image->extension();
         $image      =   About_dubaicategory::create(["title" => $title ,"category_slug"=>$slug,"category_image" => $imageName]);
 
@@ -54,9 +55,9 @@ class About_dubaicategoryController extends Controller
     }
 
     public function update_category(Request $request){
-        $id         = $request->category_id;
-        $title      =   $request->title;
-        $slug      =  str_replace(" ","_",strtolower(substr($title, 0,20)));
+        $id       = $request->category_id;
+        $title    =   $request->title;
+        $slug     =   $slug = Str::slug($request->title);
 
         if($request->image == ""){
             $image      =   About_dubaicategory::where('id',$id)->update(["title"=>$title,"category_slug"=>$slug,"category_image" =>$request->old_image]);
@@ -89,9 +90,7 @@ class About_dubaicategoryController extends Controller
                 $request->session()->flash('success', 'About Dubai Category Update Successfully.');
                 return redirect(route('about-dubai-category'));
             }
-
         }
-
     }
 
     public function delete_category(Request $request,$id){
@@ -138,15 +137,15 @@ class About_dubaicategoryController extends Controller
             }
         }else{
 
-                if( file_exists(public_path("category_image/").$Exist_files->category_image)) {
+            if( file_exists(public_path("category_image/").$Exist_files->category_image)) {
 
-                    unlink(public_path("category_image/").$Exist_files->category_image);
-                }
-                $slider = About_dubaicategory::find($id)->delete();
-                if($slider){
-                    $request->session()->flash('success', 'About Dubai Category Delete Successfully.');
-                    return redirect(route('about-dubai-category'));
-                }
+                unlink(public_path("category_image/").$Exist_files->category_image);
+            }
+            $slider = About_dubaicategory::find($id)->delete();
+            if($slider){
+                $request->session()->flash('success', 'About Dubai Category Delete Successfully.');
+                return redirect(route('about-dubai-category'));
+            }
         }
     }
 

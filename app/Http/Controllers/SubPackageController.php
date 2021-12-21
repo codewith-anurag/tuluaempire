@@ -9,6 +9,7 @@ use App\Models\SubPackageSlider;
 use Illuminate\Support\Facades\Crypt;
 use App\Helper\CryptoCode;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class SubPackageController extends Controller
 {
@@ -59,7 +60,7 @@ class SubPackageController extends Controller
         $packge_slug       = $packge_data->packge_slug;
 
         $subpackage_title  = $request->subpackage_title;
-        $slug              =  str_replace(" ","_",strtolower(substr($subpackage_title, 0,15)));
+        $slug              =  Str::slug($subpackage_title);
         $description       = $request->description;
 
         $subpackage_id      =   SubPackage::create(["package_id"=>$request->package_id,"packge_slug"=>$packge_slug,"subpackage_title" => $subpackage_title ,"subpackge_slug"=>$slug,"description"=>$description])->id;
@@ -103,10 +104,14 @@ class SubPackageController extends Controller
 
         ]);
         $subpackage_title   = $request->subpackage_title;
-        $slug               =  str_replace(" ","_",strtolower(substr($subpackage_title, 0,15)));
+        $slug              =  Str::slug($subpackage_title);
         $description        = $request->description;
 
-        $image      =   SubPackage::where('id',$id)->update(["subpackage_title" => $subpackage_title ,"subpackge_slug"=>$slug,"description"=>$description]);
+        $subpackge_Data = SubPackage::where('id',$id)->first();
+        $packge_Data = Package::where('id',$subpackge_Data->package_id)->first();
+
+
+        $image      =   SubPackage::where('id',$id)->update(["packge_slug"=>$packge_Data->packge_slug,"subpackage_title" => $subpackage_title ,"subpackge_slug"=>$slug,"description"=>$description]);
         if($image){
 
             $request->session()->flash('success', 'Sub Package Update Successfully.');

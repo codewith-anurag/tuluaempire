@@ -7,6 +7,7 @@ use App\Models\Package;
 use App\Models\SubPackage;
 use Illuminate\Support\Facades\Crypt;
 use App\Helper\CryptoCode;
+use Illuminate\Support\Str;
 
 class PackageController extends Controller
 {
@@ -42,7 +43,7 @@ class PackageController extends Controller
 
         ]);
         $package_title     = $request->package_title;
-        $slug              =  str_replace(" ","_",strtolower(substr($package_title, 0,15)));
+        $slug              =  Str::slug($package_title);
         $tour_overview     = $_POST["tour_overview"];
         $tour_overview     = implode(",",$tour_overview);
         $tour_highligts    = $request->tour_highligts;
@@ -85,7 +86,7 @@ class PackageController extends Controller
 
         ]);
         $package_title     = $request->package_title;
-        $slug              =  str_replace(" ","_",strtolower(substr($package_title, 0,15)));
+        $slug              =  Str::slug($package_title);
         $tour_overview     = $_POST["tour_overview"];
         $tour_overview     = implode(",",$tour_overview);
         $tour_highligts    = $request->tour_highligts;

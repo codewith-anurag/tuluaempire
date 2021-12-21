@@ -135,7 +135,7 @@
                                      <ul class="mega-links">
                                         <?php  $subtheme = DB::table('subthemes')->where('theme_id',$theme_list->id)->where('status',1)->get(); ?>
                                         @foreach ($subtheme as $subtheme_list)
-                                        <li><a href="{{route('frontthemes',CryptoCode::encrypt($subtheme_list->id))}}#{{$subtheme_list->subtheme_slug}}">• &nbsp; {{$subtheme_list->title}}</a></li>
+                                        <li><a href="{{route('frontthemes',$subtheme_list->subtheme_slug)}}#{{$subtheme_list->subtheme_slug}}">• &nbsp; {{$subtheme_list->title}}</a></li>
                                         @endforeach
                                      </ul>
                                   </div>

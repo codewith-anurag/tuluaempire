@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PremiumActivity;
 use App\Helper\CryptoCode;
+use Illuminate\Support\Str;
 
 class PremiumActivityController extends Controller
 {
@@ -42,7 +43,7 @@ class PremiumActivityController extends Controller
             ]
         );
         $title          =   $request->premiumactivity_title;
-        $slug           =   str_replace(" ", "_", strtolower(substr($title, 0, 20)));
+        $slug           =   Str::slug($title);
         $imageName      =   time() . '.' . $request->image->extension();
         $description    =   $request->description;
 
@@ -66,7 +67,7 @@ class PremiumActivityController extends Controller
     {
         $id             = $request->premiumactivity_id;
         $title          =   $request->premiumactivity_title;
-        $slug           =  str_replace(" ", "_", strtolower(substr($title, 0, 20)));
+        $slug           =   Str::slug($title);
         $description    =   $request->description;
 
         if ($request->image == "") {
@@ -74,7 +75,7 @@ class PremiumActivityController extends Controller
             $this->validate(
                 $request,
                 [
-                    'premiumactivity_title' => 'required|unique:premiumactivities|max:80',
+                    'premiumactivity_title' => 'required|max:80',
                     'description' => 'required'
                 ],
                 [
