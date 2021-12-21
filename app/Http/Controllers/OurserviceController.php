@@ -21,7 +21,7 @@ class OurserviceController extends Controller
     public function store_ourservices(Request $request){
 
         $this->validate($request, [
-            'service_image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=1800,height=800',
+            'service_image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=800',
             'service_title' => 'required|unique:ourservices|max:80',
             'description'  =>  'required',
         ],
@@ -32,7 +32,7 @@ class OurserviceController extends Controller
 
             'service_image' => 'Service Image is required.',
             'service_image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-            'service_image.dimensions' => "Please Upload 370 X 251 Width and Height Image.",
+            'service_image.dimensions' => "Please Upload minimum 1800 X 800 Width and Height Image.",
 
             'description'  =>  'Description is required.',
 
@@ -75,7 +75,7 @@ class OurserviceController extends Controller
         }else{
 
             $this->validate($request, [
-                'service_image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=1800,height=800',
+                'service_image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=800',
                 'service_title' => 'required|max:80',
                 'description'  =>  'required',
             ],
@@ -85,7 +85,7 @@ class OurserviceController extends Controller
 
                 'service_image' => 'Service Image is required.',
                 'service_image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-                'service_image.dimensions' => "Please Upload 370 X 251 Width and Height Image.",
+                'service_image.dimensions' => "Please Upload minimum 1800 X 800 Width and Height Image.",
 
                 'description'  =>  'Description is required.',
 

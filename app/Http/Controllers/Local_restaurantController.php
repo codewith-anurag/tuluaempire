@@ -54,7 +54,7 @@ class Local_restaurantController extends Controller
         }else{
             $this->validate($request, [
 
-                'resturant_image' => 'required|image|mimes:jpeg,png,jpg|max:20000|dimensions:max_width=6000,max_height=6000',
+                'resturant_image' => 'required|image|mimes:jpeg,png,jpg|max:20000|dimensions:min_width=6000,min_width=6000',
                 'resturant_title' => 'required|max:80',
                 'resturant_arabic_title' => 'required|max:80',
                 'resturant_food_type'=>'required',
@@ -76,7 +76,7 @@ class Local_restaurantController extends Controller
 
                 'resturant_image' => 'Resturant Image is required.',
                 'resturant_image.max' => "Please Upload Maximum Image size to 20MB (20000 KB).",
-                'resturant_image.dimensions' => "Please Upload 6000 X 6000 Width and Height Image.",
+                'resturant_image.dimensions' => "Please Upload minimum 6000 X 6000 Width and Height Image.",
 
                 'resturant_food_type'=>'Food Type is required.',
                 'resturant_ratting'=>'Ratting is required.',

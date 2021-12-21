@@ -21,7 +21,7 @@ class ReviewController extends Controller
     public function store_reviews(Request $request){
 
         $this->validate($request, [
-            'review_image' => 'required|image|mimes:jpeg,png,jpg|max:1024|dimensions:min_width=100,min_height=100,max_width=128,max_height=128',
+            'review_image' => 'required|image|mimes:jpeg,png,jpg|max:1024|dimensions:min_width=128,min_height=128',
             'name' => 'required|unique:reviews|max:80',
             'ratting' => 'required|numeric',
             'description'=>'required'
@@ -77,7 +77,7 @@ class ReviewController extends Controller
         }else{
 
             $this->validate($request, [
-                'review_image' => 'required|image|mimes:jpeg,png,jpg|max:1024|dimensions:min_width=100,min_height=100,max_width=128,max_height=128',
+                'review_image' => 'required|image|mimes:jpeg,png,jpg|max:1024|dimensions:min_width=128,min_height=128',
                 'name' => 'required|unique:reviews|max:80',
                 'ratting' => 'required|numeric',
                 'description'=>'required'
@@ -89,7 +89,7 @@ class ReviewController extends Controller
 
                 'review_image' => 'Review Image is required.',
                 'review_image.max' => "Please Upload Maximum Image size to 1MB (1024 KB).",
-                'review_image.dimensions' => "Please Upload 128 X 128 Width and Height Image.",
+                'review_image.dimensions' => "Please Upload minimum 128 X 128 Width and Height Image.",
 
                 'ratting'=>'Ratting is required.',
                 'ratting.numeric'=>'Please enter only number in Ratting.',

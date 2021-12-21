@@ -30,12 +30,12 @@ class SubPackageSliderController extends Controller
     public function store_subpackages_slider(Request $request)
     {
         $this->validate($request, [
-            'imageFile' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=500,height=334',
+            'imageFile' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=500,min_height=334',
         ],
         [
             'imageFile' => 'Sub Package Slider Image is required.',
             'imageFile.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-            'imageFile.dimensions' => "Please Upload 500 X 334 Width and Height Image."
+            'imageFile.dimensions' => "Please Upload minimum 500 X 334 Width and Height Image."
 
         ]);
         $subpackage_image = $request->file('imageFile');
@@ -72,12 +72,12 @@ class SubPackageSliderController extends Controller
         $id         = $request->subpackage_slider_id;
         $subpackage_id = CryptoCode::encrypt($request->subpackage_id);
         $this->validate($request, [
-            'imageFile' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=500,height=334',
+            'imageFile' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=500,min_height=334',
         ],
         [
             'imageFile' => 'Sub Package Slider Image is required.',
             'imageFile.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-            'imageFile.dimensions' => "Please Upload 500 X 334 Width and Height Image."
+            'imageFile.dimensions' => "Please Upload minimum 500 X 334 Width and Height Image."
 
         ]);
         $imageName  =   time().'.'.$request->imageFile->extension();

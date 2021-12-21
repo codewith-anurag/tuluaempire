@@ -28,12 +28,12 @@ class SliderController extends Controller
 
     public function store_slider(Request $request){
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min-width=1800,min-height=1012',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1012',
         ],
         [
             'image' => 'Slider Image is required.',
             'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-            'image.dimensions' => "Please Upload 1800 X 1012 Width and Height Image."
+            'image.dimensions' => "Please Upload minimum 1800 X 1012 Width and Height Image."
 
         ]);
         $title     = $request->title;
@@ -66,12 +66,12 @@ class SliderController extends Controller
 
         }else{
             $this->validate($request, [
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1006,max_width=1800,max_height=1006',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1012,max_width=1800,max_height=1012',
             ],
             [
                 'image' => 'Slider Image is required.',
                 'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-                'image.dimensions' => "Please Upload 1800 X 1006 Width and Height Image."
+                'image.dimensions' => "Please Upload minimum 1800 X 1012 Width and Height Image."
 
             ]);
 

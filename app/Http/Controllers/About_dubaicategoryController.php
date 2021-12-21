@@ -24,7 +24,7 @@ class About_dubaicategoryController extends Controller
     public function store_category(Request $request){
 
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=360,height=251',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=360,min_height=251',
             'title' => 'required|unique:about_dubaicategories|max:80'
         ],
         [
@@ -33,7 +33,7 @@ class About_dubaicategoryController extends Controller
             'title.max'=> 'Please Enter 80 Character of Category Title.',
             'image' => 'Category Image is required.',
             'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-            'image.dimensions' => "Please Upload 370 X 251 Width and Height Image."
+            'image.dimensions' => "Please Upload minimum 360 X 251 Width and Height Image."
 
         ]);
         $title      =  $request->title;
@@ -70,7 +70,7 @@ class About_dubaicategoryController extends Controller
         }else{
 
             $this->validate($request, [
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=360,height=251',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=360,min_height=251',
                 'title' => 'required|unique:about_dubaicategories|max:80'
             ],
             [
@@ -79,7 +79,7 @@ class About_dubaicategoryController extends Controller
                 'title.max'=> 'Please Enter 80 Character of Category Title.',
                 'image' => 'Category Image is required.',
                 'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
-                'image.dimensions' => "Please Upload 1800 X 1006 Width and Height Image."
+                'image.dimensions' => "Please Upload minimum 360 X 251 Width and Height Image."
 
             ]);
 
