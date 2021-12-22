@@ -32,9 +32,10 @@
                                 </div> 
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">*</span></label>
+                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image 1800 X 1012)</span></label>
                                         <label for="image" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file"  name="image" class="image @error('image') is-invalid @enderror d-none" id="image" require>
+                                        
                                         @error('image')
                                             <div class="input_error">{{ $message }}</div>
                                         @enderror
