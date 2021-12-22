@@ -23,12 +23,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ContactSetting;
 use App\Helper\CryptoCode;
 
-
-
 class FrontController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $data['slider']         =   Slider::where('status',1)->get();
         $data['review']         =   Review::where('status',1)->get();
 
@@ -39,21 +36,14 @@ class FrontController extends Controller
     public function aboutdubai_subcategory($slug)
     {
 
-
         $subcategory_data                     = About_dubaisubcategory::where('status',1)->where('category_slug',$slug)->get();
-
         $data['subcategory']                  = $subcategory_data;
-
         $localresturant_data                  = Local_restaurant::where('status',1)->where('category_slug',$slug)->get();
         $resturantdata['localresturant_data'] = Local_restaurant::where('status',1)->where('category_slug',$slug)->get();
 
-       // dd($subcategory_data);
         if($subcategory_data->count() > 0){
-
             foreach($subcategory_data as $subcate) {
-
                 if($subcate->template_type == "simple"){
-
                     $categorydata   =  DB::table('about_dubaicategories')->where('category_slug', $slug)->where('status',1)->first();
                     $data['category_title'] = !empty($categorydata) ? $categorydata->title : "";
                     return view('front.aboutdubaisubcategory',$data);
@@ -61,47 +51,35 @@ class FrontController extends Controller
                 }
             }
         }elseif($localresturant_data->count() > 0){
-
             foreach($localresturant_data as $resturant) {
-
                 if($resturant->template_type == "localresturant"){
-
                     $categorydata   =  DB::table('about_dubaicategories')->where('category_slug', $slug)->first();
                     $resturantdata['category_title'] =  !empty($categorydata) ? $categorydata->title : '';
                     return view('front.localresturant',$resturantdata);
-
                 }
             }
-
         }else{
             $resturantdata['title'] = "No Data Found.";
             return view('front.nodatafound',$resturantdata);
         }
-
     }
 
-    public function about()
-    {
+    public function about(){
         return view('front.about_us');
     }
-    public function contact()
-    {
+    public function contact(){
         $data['contact_detail'] = ContactSetting::all();
         return view('front.contact_us',$data);
     }
-    public function ourservices()
-    {
+    public function ourservices(){
         $data['ourservices'] = Ourservice::where('status',1)->get();
         return view('front.our_services',$data);
     }
-    public function premium_activity()
-    {
+    public function premium_activity(){
         $data['premium_activity'] = PremiumActivity::where('status',1)->get();
         return view('front.premium_activity',$data);
     }
-
-    public function themes_detail($slug="")
-    {
+    public function themes_detail($slug=""){
         if($slug !=""){
             $data['subtheme_id'] = $slug;
             $Subtheme = SubTheme::where('subtheme_slug',$data['subtheme_id'])->where('status',1)->first();
@@ -119,11 +97,9 @@ class FrontController extends Controller
     }
 
     public function packages_detail ($slug=""){
-
         if($slug !=""){
             $data['package_detail'] = Package::where('packge_slug',$slug)->where('status',1)->first();
             $data['subpackage_detail'] = SubPackage::where('packge_slug',$slug)->where('status',1)->get();
-
         }else{
             $data['package_detail'] = Package::orderBy('id','Desc')->limit(0,1)->first();
             $data['subpackage_detail'] = SubPackage::where('package_id',$data['package_detail']->id)->where('status',1)->get();
@@ -133,6 +109,28 @@ class FrontController extends Controller
     }
 
     public function send_inquiry(Request $request){
+        $this->validate($request, [
+            'options[]' => 'required',
+            'name' => 'required|max:80',
+            'email' => 'required|email|max:80',
+            'phone' => 'required|numeric',
+            'location'=>'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'note' => 'required'
+        ],
+        [
+            'options[]' => 'Option is required.',
+            'name' => 'Name is required.',
+            'name.max' => 'Please enter only 80 characters.',
+            'email' => 'Email is required.',
+            'email.email' => 'Please enter valid Email address.',
+            'email.max' => 'Please enter only 80 characters.',
+            'phone' => 'Phone is required.',
+            'phone.numeric' => 'Please enter only Number.',
+            'location'=>'Location is required.',
+            'location.regex'=>'Please Enter only Alphabats and Number',
+            'note' => 'Note is required.'
+
+        ]);
         $options  = $request->options;
         $name     = $request->name;
         $to_email = $request->email;
@@ -150,38 +148,39 @@ class FrontController extends Controller
                         ->subject('Inquiry - '.env("MAIL_FROM_NAME"));
                         $message->to(env("MAIL_FROM_ADDRESS"));
                 });
-
-            //Session::flash('success', "Inquery Send Successfully!");
             return back()->with('success','Inquery Send Successfully!');
-
         }
 
     }
 
     public function send_contactus(Request $request){
-
        $name        = $request->name;
        $to_email    = $request->email;
        $phone       = $request->phone;
        $message     = $request->messege;
 
-        $data        = ["name"=>$name,"email"=>$to_email,"phone"=>$phone,"usermessage"=>$message];
-        $Insert_Data = ["name"=>$name,"email"=>$to_email,"phone"=>$phone,"message"=>$message];
+       if($name == ""){
+           echo " Name field is  Required";
+       }else if($to_email == ""){
+            echo "Email field is  Required.";
+        }else if($phone == ""){
+            echo "Phone Number field is Required.";
+        }else if($message == ""){
+            echo "Message field is Required.";
+        }else{
 
-        $inquery  = Contact::create($Insert_Data);
-        if($inquery){
-            Mail::send("front.email_template.contact-us", $data, function($message) use ($to_email,$name,$request) {
-                        $message->from($to_email,$name)
-                        ->subject('Contact us - '.env("MAIL_FROM_NAME"));
-                        $message->to(env("MAIL_FROM_ADDRESS"));
-                });
+            $data        = ["name"=>$name,"email"=>$to_email,"phone"=>$phone,"usermessage"=>$message];
+            $Insert_Data = ["name"=>$name,"email"=>$to_email,"phone"=>$phone,"message"=>$message];
 
-            Session::flash('success', "Contact Us Message Send Successfully!");
-            //return redirect(route('contact_us'));
-
+            $inquery  = Contact::create($Insert_Data);
+            if($inquery){
+                Mail::send("front.email_template.contact-us", $data, function($message) use ($to_email,$name,$request) {
+                            $message->from($to_email,$name)
+                            ->subject('Contact us - '.env("MAIL_FROM_NAME"));
+                            $message->to(env("MAIL_FROM_ADDRESS"));
+                    });
+                Session::flash('success', "Contact Us Message Send Successfully!");
+            }
         }
-
     }
-
-
 }

@@ -1,30 +1,29 @@
 @extends('front.layouts.app')
 @section('content')
 <style>
-.contact-code .iti input, .iti input[type=text], .iti input[type=tel] {
-    position: relative;
-    z-index: 0;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-right: 36px;
-    margin-right: 0;
-    width: 100%;
-    height: 50px !important;
-    padding: 1.375rem 2.75rem !important;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #a1a1a1 !important;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.contact-code .iti { margin-top: 20px;  width: 100% !important;}
-.contact-code .iti__country-list {z-index: 9;}
-    </style>
+    .contact-code .iti input, .iti input[type=text], .iti input[type=tel] {
+        position: relative;
+        z-index: 0;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-right: 36px;
+        margin-right: 0;
+        width: 100%;
+        height: 50px !important;
+        padding: 1.375rem 2.75rem !important;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #a1a1a1 !important;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+    .contact-code .iti { margin-top: 20px;  width: 100% !important;}
+    .contact-code .iti__country-list {z-index: 9;}
+</style>
     </head>
 <section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8" style="background-image: url({{asset('front/img/page-banner-1.jpg')}})">
         <div class="container">
@@ -60,20 +59,28 @@
                                     <div class="col-md-6">
                                         <div class="singel-form form-group has-error has-danger">
                                             <input name="name" type="text" placeholder="Your name*" data-error="Name is required." required="required">
-
                                         </div>
+                                        @error('name')
+                                            <div class="input_error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <div class="singel-form form-group">
                                             <input name="email" type="email" placeholder="Email*" data-error="Valid email is required." required="required">
                                             <div class="help-block with-errors"></div>
                                         </div>
+                                        @error('email')
+                                            <div class="input_error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12 contact-code">
 
                                         <input id="phonewater" type="tel" name="phone" required="required" />
 
                                     </div>
+                                    @error('phone')
+                                            <div class="input_error">{{ $message }}</div>
+                                        @enderror
 
                                     <div class="col-md-12">
                                         <div class="singel-form form-group">
@@ -81,12 +88,12 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
+                                    @error('messege')
+                                        <div class="input_error">{{ $message }}</div>
+                                    @enderror
 
                                     <p class="form-message">
-
-
                                     </p>
-
                                     <div class="col-md-12">
                                         <div class="singel-form">
                                             <button type="submit" class="main-btn disabled contact ">Send</button>

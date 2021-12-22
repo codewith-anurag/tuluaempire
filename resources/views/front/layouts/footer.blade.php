@@ -210,69 +210,71 @@
                 <div class="container">
                     <div class="row">
                     <div class="col-md-1"></div>
-                    <div class="col-md-3">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="options[]" type="checkbox" id="inlineCheckbox1" value="packages">
-                            <label class="form-check-label" for="inlineCheckbox1">Packages</label>
+                        <div class="col-md-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="options[]" type="checkbox" id="inlineCheckbox1" value="packages" required>
+                                <label class="form-check-label" for="inlineCheckbox1">Packages</label>
+                            </div>
+                        </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" name="options[]"  type="checkbox" id="inlineCheckbox1" value="Activities" required>
+                                    <label class="form-check-label" for="inlineCheckbox1">Activities</label>
 
-                        </div>
-                        </div>
+                                </div>
+                            </div>
                         <div class="col-md-4">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="options[]"  type="checkbox" id="inlineCheckbox1" value="Activities">
-                            <label class="form-check-label" for="inlineCheckbox1">Activities</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="options[]"  type="checkbox" id="inlineCheckbox1" value="Others" required>
+                                <label class="form-check-label" for="inlineCheckbox1">Others</label>
 
+                            </div>
                         </div>
-                        </div>
-                        <div class="col-md-4">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="options[]"  type="checkbox" id="inlineCheckbox1" value="Others">
-                            <label class="form-check-label" for="inlineCheckbox1">Others</label>
+                        @error('options[]')
+                                <div class="input_error">{{ $message }}</div>
+                        @enderror
 
-                        </div>
-                        </div>
-                        <!-- <div class="col-md-3">
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Visa</label>
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        <label class="form-check-label" for="inlineRadio1">Visa</label>
-                        </div>
-                        </div> -->
                         <div style="margin-bottom: 50px;"></div>
                         <div class="col-md-12">
 
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Name*">
+                                <input type="text" name="name" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Name*">
                             </div>
+                            @error('name')
+                                <div class="input_error">{{ $message }}</div>
+                            @enderror
                             <br>
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email id*">
+                                <input type="email" name="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email id*">
                             </div>
+                            @error('email')
+                                <div class="input_error">{{ $message }}</div>
+                            @enderror
                             <br>
-                        <!--   <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="India (+91)*">
-                            </div> -->
+
                             <div class="popup-country-code">
-                                <input  id="phone10"  type="tel" name="phone" required="required" />
+                                <input  id="phone10"  type="tel" required name="phone" required="required" />
 
                             </div>
+                            @error('phone')
+                                <div class="input_error">{{ $message }}</div>
+                            @enderror
                             <br>
-                            <!-- <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mobile / Telephone">
-                            </div> -->
 
                             <div class="form-group">
-                                <input type="text" name="location" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Location">
+                                <input type="text" name="location" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Location">
                             </div>
+                            @error('location')
+                                <div class="input_error">{{ $message }}</div>
+                            @enderror
                             <br>
-                            <!-- <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type and choose your travel destination">
-                            </div> -->
 
                             <div class="form-group">
                                 <textarea class="form-control" name="note" id="exampleFormControlTextarea1" rows="3" placeholder="Note"></textarea>
                             </div>
+                            @error('note')
+                                <div class="input_error">{{ $message }}</div>
+                            @enderror
                             <br>
                         </div>
                     </div>
