@@ -40,12 +40,12 @@ class FrontController extends Controller
     {
 
 
-        $subcategory_data                     = About_dubaisubcategory::where('category_slug',$slug)->get();
+        $subcategory_data                     = About_dubaisubcategory::where('status',1)->where('category_slug',$slug)->get();
 
         $data['subcategory']                  = $subcategory_data;
 
-        $localresturant_data                  = Local_restaurant::where('category_slug',$slug)->get();
-        $resturantdata['localresturant_data'] = Local_restaurant::where('category_slug',$slug)->get();
+        $localresturant_data                  = Local_restaurant::where('status',1)->where('category_slug',$slug)->get();
+        $resturantdata['localresturant_data'] = Local_restaurant::where('status',1)->where('category_slug',$slug)->get();
 
        // dd($subcategory_data);
         if($subcategory_data->count() > 0){
@@ -54,7 +54,7 @@ class FrontController extends Controller
 
                 if($subcate->template_type == "simple"){
 
-                    $categorydata   =  DB::table('about_dubaicategories')->where('category_slug', $slug)->first();
+                    $categorydata   =  DB::table('about_dubaicategories')->where('category_slug', $slug)->where('status',1)->first();
                     $data['category_title'] = !empty($categorydata) ? $categorydata->title : "";
                     return view('front.aboutdubaisubcategory',$data);
 

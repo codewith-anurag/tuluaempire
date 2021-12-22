@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image 1800 X 800)</span></label>
+                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image minimum 1800 X 800)</span></label>
                                         <label for="image" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file" name="image" class="image @error('image') is-invalid @enderror d-none" id="image" require>
                                         @error('image')
@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label class="d-block">Upload Image <span class="required_class">* (Upload Image 6000 X 6000)</span></label>
+                                            <label class="d-block">Upload Image <span class="required_class">* (Upload Image minimum 6000 X 6000)</span></label>
                                             <label for="resturant_image" class="btn btn-info btn-rounded">Upload Image </label>
                                             <input type="file" name="resturant_image" class="image @error('resturant_image') is-invalid @enderror d-none" id="resturant_image" >
                                             @error('resturant_image')

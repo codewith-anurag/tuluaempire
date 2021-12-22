@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="d-block">Upload Image <span class="required_class">* (Upload Image 782 X 522)</span></label>
+                                    <label class="d-block">Upload Image <span class="required_class">* (Upload Image minimum 782 X 522)</span></label>
                                     <label for="image" class="btn btn-info btn-rounded">Upload Image </label>
                                     <input type="file" name="image" class="image @error('image') is-invalid @enderror d-none" id="image" require>
                                     <input type="hidden" name="old_image" class="form-control" id="old_image" value="{{$edit_subtheme->image}}">

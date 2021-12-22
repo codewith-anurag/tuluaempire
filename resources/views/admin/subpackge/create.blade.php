@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image 378 X 523)</span></label>
+                                        <label class="d-block"> Upload Image (Create Slider) <span class="required_class">* (Upload Image minimum 378 X 523)</span></label>
                                         <label for="imageFile" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file" name="imageFile[]" multiple class="image @error('imageFile') is-invalid @enderror d-none" id="imageFile" require>
                                         @error('imageFile')

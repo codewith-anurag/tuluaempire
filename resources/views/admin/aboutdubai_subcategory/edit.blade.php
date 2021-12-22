@@ -56,7 +56,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="exampleInputUsername1">Images <span class="required_class">* (Upload Image 1800 X 800)</span></label>
+                                    <label for="exampleInputUsername1">Images <span class="required_class">* (Upload Image minimum 1800 X 800)</span></label>
                                     <input type="file" name="image" class="image @error('image') is-invalid @enderror" id="image" require>
                                     <input type="hidden" name="old_image"  id="old_image" value="{{$edit_subcategory->subcategory_image}}">
                                         @error('image')

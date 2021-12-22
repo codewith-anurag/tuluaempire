@@ -6,7 +6,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-about mt-40">
                             <div class="logo">
-                                <a href="#"><img src="{{asset('front/img/logo-1.png')}}" alt="Logo"></a>
+                                <a href="{{route('index')}}"><img src="{{asset('front/img/logo-1.png')}}" alt="Logo"></a>
                             </div>
                             <p class="pt-10"> Tulua Empire Pvt Ltd. reflects the perfect blend of international and local knowledge. We are headed towards redefining the role of Travel & Destination Management Company. </p>
                          <div class="footer-address mt-40">

@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image 128 X 128)</span></label>
+                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image minimum 128 X 128)</span></label>
                                         <label for="review_image" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file" name="review_image" class="image @error('image') is-invalid @enderror d-none" id="review_image" require>
                                         @error('review_image')

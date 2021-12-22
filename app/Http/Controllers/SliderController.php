@@ -28,7 +28,7 @@ class SliderController extends Controller
 
     public function store_slider(Request $request){
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1012',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1006',
         ],
         [
             'image' => 'Slider Image is required.',
@@ -66,7 +66,7 @@ class SliderController extends Controller
 
         }else{
             $this->validate($request, [
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1012,max_width=1800,max_height=1012',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=1800,min_height=1006',
             ],
             [
                 'image' => 'Slider Image is required.',

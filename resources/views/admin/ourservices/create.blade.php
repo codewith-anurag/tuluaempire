@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image 1800 X 800)</span></label>
+                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image minimum 1800 X 800)</span></label>
                                         <label for="service_image" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file" name="service_image" class="image @error('service_image') is-invalid @enderror d-none" id="service_image" require>
                                         @error('service_image')
@@ -58,7 +58,7 @@
                     </div>
                     <div class="card-footer">
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{route('about-dubai-category')}}" class="btn btn-light">Cancel</a>
+                            <a href="{{route('ourservices')}}" class="btn btn-light">Cancel</a>
                         </div>
                     </div>
                 </form>

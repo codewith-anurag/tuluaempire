@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="d-block">Upload Image <span class="required_class">* (Upload Image 1800 X 1012)</span></label>
+                                    <label class="d-block">Upload Image <span class="required_class">* (Upload Image minimum 1800 X 1006)</span></label>
                                     <label for="image" class="btn btn-info btn-rounded">Upload Image </label>
                                     <input type="file"  name="image" class="image @error('image') is-invalid @enderror d-none" id="image" require>
                                     <input type="hidden" name="old_image"  id="image" value="{{$edit_slider->slider_image}}">
