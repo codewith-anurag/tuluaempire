@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="exampleInputUsername1">Name <span class="required_class">*</span></label>
+                                        <label for="exampleInputUsername1">Name <span class="required_class">* </span></label>
                                         <input type="text" name="name" class="form-control" id="title" value="{{old('name')}}">
                                         @error('name')
                                             <div class="input_error">{{ $message }}</div>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">*</span></label>
+                                        <label class="d-block">Upload Image <span class="required_class">* (Upload Image 128 X 128)</span></label>
                                         <label for="review_image" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file" name="review_image" class="image @error('image') is-invalid @enderror d-none" id="review_image" require>
                                         @error('review_image')

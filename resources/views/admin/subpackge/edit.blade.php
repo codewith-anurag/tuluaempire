@@ -33,7 +33,7 @@
                                         @error('subpackage_title')
                                             <div class="input_error">{{ $message }}</div>
                                         @enderror
-                                        
+
                                     </div>
                                 </div>
 

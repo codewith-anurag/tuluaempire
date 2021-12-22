@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="d-block">Upload Image <span class="required_class">*</span></label>
+                                    <label class="d-block">Upload Image <span class="required_class">* (Upload Image 6000 X 6000)</span></label>
                                     <label for="resturant_image" class="btn btn-info btn-rounded">Upload Image </label>
                                     <img src="{{asset('resturant_image/').'/'.$edit_restaurant->resturant_image}}" height="100" style="margin-left:200px"/>
                                     <input type="hidden" name="resturant_oldimage" class="form-control" id="resturant_oldimage" value="{{$edit_restaurant->resturant_image}}">

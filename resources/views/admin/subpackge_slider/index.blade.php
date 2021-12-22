@@ -47,8 +47,8 @@
                                                 <td><img src="{{asset('subpackage_slider_image/'.$subpackage_slider_value->image)}}" style="height: 100px;width:100px" class="img-thumbnail"/> </td>
                                                 <td>{{$subpackage}}</td>
                                                 <td>
-                                                    <a href="{{ route('edit-subpackages-slider',Crypt::encrypt($subpackage_slider_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
-                                                    <a  href="{{ route('delete-subpackages-slider',Crypt::encrypt($subpackage_slider_value->id).'/'.Crypt::encrypt($subpackage_slider_value->subpackage_id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
+                                                    <a href="{{ route('edit-subpackages-slider',CryptoCode::encrypt($subpackage_slider_value->id)) }}" class="btn btn-success" style="height:35px;"><i class="fas fa-pencil-alt mt-2"></i></a>
+                                                    <a  href="{{ route('delete-subpackages-slider',CryptoCode::encrypt($subpackage_slider_value->id).'/'.Crypt::encrypt($subpackage_slider_value->subpackage_id)) }}" onclick="return confirm('Are you sure want to Delete this record ?')" class="btn btn-danger" style="height: 35px;"><i class="fas fa-trash mt-2"></i></a>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

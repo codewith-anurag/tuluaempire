@@ -24,10 +24,10 @@
                     @csrf
                     <div class="card-body">
                         <h4 class="card-title">Create Sub Package Slider</h4>
-                            <div class="row">                                
+                            <div class="row">
                                 <div class="col-lg-8">
                                     <div class="form-group">
-                                        <label class="d-block">Upload Image <span class="required_class">*</span></label>
+                                        <label class="d-block">Upload Image <span class="required_class">*  (Upload Image 378 X 523) </span></label>
                                         <label for="imageFile" class="btn btn-info btn-rounded">Upload Image </label>
                                         <input type="file" name="imageFile[]" multiple class="image @error('imageFile') is-invalid @enderror d-none" id="imageFile" require>
                                         <input type="hidden" name="subpackage_id" value="{{$subpackge_ID}}" class="form-control">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                     </div>
                     <div class="card-footer">
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>

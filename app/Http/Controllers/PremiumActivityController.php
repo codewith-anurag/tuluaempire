@@ -26,7 +26,7 @@ class PremiumActivityController extends Controller
         $this->validate(
             $request,
             [
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=782,min_height=521,max_width=782,max_height=521',
                 'premiumactivity_title' => 'required|unique:premiumactivities|max:80',
                 'description' => 'required'
             ],
@@ -37,6 +37,7 @@ class PremiumActivityController extends Controller
 
                 'image' => 'Premium Activity Image is required.',
                 'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
+                'image.dimensions' => "Please Upload Maximum 782 X 521 .",
 
                 'description' => 'Description is required.'
 
@@ -75,6 +76,7 @@ class PremiumActivityController extends Controller
             $this->validate(
                 $request,
                 [
+
                     'premiumactivity_title' => 'required|max:80',
                     'description' => 'required'
                 ],
@@ -99,7 +101,7 @@ class PremiumActivityController extends Controller
         $this->validate(
             $request,
             [
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=782,min_height=521,max_width=782,max_height=521',
                 'premiumactivity_title' => 'required|unique:premiumactivities|max:80',
                 'description' => 'required'
             ],
@@ -109,6 +111,7 @@ class PremiumActivityController extends Controller
                 'premiumactivity_title.max' => 'Please Enter 80 Character of Premium Activity Title.',
                 'image' => 'Premium Activity Image is required.',
                 'image.max' => "Please Upload Maximum Image size to 2MB (2048 KB).",
+                'image.dimensions' => "Please Upload Maximum 782 X 521 .",
                 'description' => 'Description is required.'
 
             ]

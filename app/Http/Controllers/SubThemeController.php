@@ -29,7 +29,7 @@ class SubThemeController extends Controller
     public function store_subthemes(Request $request){
         $this->validate($request, [
             'title' => 'required|max:80|unique:subthemes',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=782,max_width=522',
             'description' => 'required',
         ],
         [
